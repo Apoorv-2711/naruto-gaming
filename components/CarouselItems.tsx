@@ -16,6 +16,7 @@ export default function CarouselItems({ carouselData }: Props) {
         {carouselData?.map((item, idx) => (
           <>
             <div
+              key={idx + "__VK__APOORV__NG"}
               className={`object-cover bg-gray-800 min-w-full h-[500px] text-black filter brightness-75`}
               style={{
                 backgroundImage: `url(${
@@ -61,8 +62,8 @@ export default function CarouselItems({ carouselData }: Props) {
                     {/* <Badge variant="default">1</Badge> */}
                   </div>
                   <p className="max-w-2xl mb-6">
-                    As a lionhearted boy who can't wield magic strives for the
-                    title of Wizard King, four banished Wizard Kings of yore
+                    As a lionhearted boy who can&apos;t wield magic strives for
+                    the title of Wizard King, four banished Wizard Kings of yore
                     return to crush the Clover Kingdom.
                   </p>
                   <div className="flex space-x-4">
