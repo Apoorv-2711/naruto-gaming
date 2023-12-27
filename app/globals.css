@@ -70,6 +70,13 @@ body,
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
+
+
+
+}
+
+.instagram-gradient {
+  background: radial-gradient(circle at 19.38% 42.035%, #fd5 0%, #ff543f 32.8%, #fc5245 34.8%, #e64771 50.4%, #d53e91 64.3%, #cc39a4 76.1%, #c837ab 84.1%);
 }
  
 @layer base {
