@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -6,6 +7,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       <main className="">
         <Navbar />
         {children}
+        <ScrollToTop />
       </main>
     </div>
   );

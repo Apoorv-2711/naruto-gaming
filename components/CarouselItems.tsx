@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import Carousel from "./Carousel";
 import { anilistTrending } from "@/types/types";
 import { CalendarIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
 type Props = {
   carouselData: anilistTrending[];
@@ -57,18 +58,18 @@ export default function CarouselItems({ carouselData }: Props) {
                         CC
                       </Badge>
                       <span className="sr-only">Closed Captioning</span>
-                      <span>{item.episodes}</span>
+                      <span>{item?.episodes}</span>
                     </Badge>
                     {/* <Badge variant="default">1</Badge> */}
                   </div>
                   <p className="max-w-2xl mb-6">
-                    As a lionhearted boy who can&apos;t wield magic strives for
-                    the title of Wizard King, four banished Wizard Kings of yore
-                    return to crush the Clover Kingdom.
+                    {item.description.substring(0, 250)}...
                   </p>
                   <div className="flex space-x-4">
                     <Button variant="default">Watch Now</Button>
-                    <Button variant="secondary">Detail</Button>
+                    <Link href={`${item.title.userPreferred.split(" ").join("-")}`}>
+                      <Button variant="secondary">Detail</Button>
+                    </Link>
                   </div>
                 </div>
               </div>

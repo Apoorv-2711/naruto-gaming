@@ -14,6 +14,7 @@ export type anilistTrending = {
   format: string;
   status: string;
   episodes: number;
+  description: string;
 };
 
 export type gogoPopular = {

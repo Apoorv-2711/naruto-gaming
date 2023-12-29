@@ -16,7 +16,6 @@ const dataForHome = async () => {
 
 const home = async () => {
   const carouselDataMain = await dataForHome();
-  console.log(carouselDataMain, "Carousel Data..");
   const carouselData = carouselDataMain.anilistTrending;
   const trendingData = carouselDataMain.gogoPopular;
 

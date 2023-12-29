@@ -1,6 +1,5 @@
 "use client";
 
-import { gogoPopular } from "@/types/types";
 import Image from "next/image";
 import React, { FC } from "react";
 import { Button } from "@/components/ui/button";
@@ -12,7 +11,6 @@ import {
   TelegramIcon,
   TwitterXIcon,
 } from "./icons/icons";
-import { TwitterLogoIcon } from "@radix-ui/react-icons";
 
 type ShareSectionProps = {};
 

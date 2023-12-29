@@ -4,14 +4,6 @@ import { gogoPopular } from "@/types/types";
 import Image from "next/image";
 import React, { FC } from "react";
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import {
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -35,7 +27,7 @@ const Trending: FC<TrendingProps> = ({ trendingData }) => {
             {trendingData.map((item, idx) => {
               return (
                 <CarouselItem
-                  key={idx}
+                  key={idx + "__VK__APOORV__NG"}
                   className=" md:basis-1/2 lg:basis-1/6 flex flex-row max-h-60  justify-center space-x-2 hover:scale-105 transform transition-all duration-500 ease-in-out"
                 >
                   <div className="text-white space-y-2 flex flex-col items-center justify-end flex-wrap py-1">
