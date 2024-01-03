@@ -1,5 +1,4 @@
 "use client";
-
 import { gogoPopular } from "@/types/types";
 import Image from "next/image";
 import React, { FC } from "react";
@@ -58,8 +57,8 @@ const Trending: FC<TrendingProps> = ({ trendingData }) => {
               );
             })}
           </CarouselContent>
-          <CarouselNext className="text-white" />
-          <CarouselPrevious className="text-white" />
+          <CarouselNext className="text-white " />
+          <CarouselPrevious className="text-white " />
         </Carousel>
       </div>
     </div>

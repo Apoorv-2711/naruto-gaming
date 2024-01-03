@@ -22,7 +22,7 @@ const home = async () => {
   return (
     <div>
       <CarouselItems carouselData={carouselData} />
-      <Separator className="my-2 bg-[#2d29294b] h-1" />
+      {/* <Separator className="my-2 bg-[#2d29294b] h-1" /> */}
       <Trending trendingData={trendingData} />
       <ShareSection />
     </div>
