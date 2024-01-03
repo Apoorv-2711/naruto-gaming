@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Poppins } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
 import "./globals.css";
+import TanstackProvider from "@/providers/TanstackProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
@@ -25,8 +26,10 @@ export default function RootLayout({
       <body
         className={`${poppins.className} scrollbar-thin scrollbar-thumb-orange-500 scrollbar-track-gray-900 scrollbar-thumb-rounded    scrollbar-thumb-opacity-50 scrollbar-track-opacity-50`}
       >
-        <NextTopLoader />
-        {children}
+        <TanstackProvider>
+          <NextTopLoader />
+          {children}
+        </TanstackProvider>
       </body>
     </html>
   );

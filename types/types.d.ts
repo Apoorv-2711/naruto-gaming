@@ -24,3 +24,11 @@ export type gogoPopular = {
   link: string;
   id: string;
 };
+
+export type gogoRecent = {
+  title: string;
+  releaseDate: string;
+  image: string;
+  link: string;
+  id: string;
+};

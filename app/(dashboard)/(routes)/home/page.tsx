@@ -1,4 +1,5 @@
 import CarouselItems from "@/components/CarouselItems";
+import RecentSection from "@/components/RecentSection";
 import ShareSection from "@/components/ShareSection";
 import Trending from "@/components/Trending";
 import { Separator } from "@/components/ui/separator";
@@ -25,6 +26,7 @@ const home = async () => {
       {/* <Separator className="my-2 bg-[#2d29294b] h-1" /> */}
       <Trending trendingData={trendingData} />
       <ShareSection />
+      <RecentSection />
     </div>
   );
 };
