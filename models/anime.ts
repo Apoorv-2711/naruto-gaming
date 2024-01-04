@@ -149,19 +149,19 @@ const AnimeServerSchema = z.union([
 
 type AnimeServer = z.infer<typeof AnimeServerSchema>;
 
-const ServersSchema = z.union([
-  z.literal("vidstreaming"),
-  z.literal("megacloud"),
-  z.literal("streamsb"),
-  z.literal("streamtape"),
-  z.literal("vidcloud"),
-  z.literal("asianload"),
-  z.literal("gogocdn"),
-  z.literal("mixdrop"),
-  z.literal("upcloud"),
-  z.literal("vizcloud"),
-  z.literal("mycloud"),
-  z.literal("filemoon"),
+const ServersSchema = z.enum([
+  "vidstreaming",
+  "megacloud",
+  "streamsb",
+  "streamtape",
+  "vidcloud",
+  "asianload",
+  "gogocdn",
+  "mixdrop",
+  "upcloud",
+  "vizcloud",
+  "mycloud",
+  "filemoon",
 ]);
 
 type Servers = z.infer<typeof ServersSchema>;
