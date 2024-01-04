@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 export async function GET(request: Request) {
-  const getHome = await fetch("https://api.anime-dex.workers.dev/home", {
+  const getHome = await fetch("http://localhost:4000/anime/home", {
     cache: "no-cache",
   });
   const home = await getHome.json();

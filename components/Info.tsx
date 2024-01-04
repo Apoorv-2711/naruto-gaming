@@ -1,25 +1,12 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { animeInfo } from "@/types/types";
 
 type Props = {
-  data: {
-    results: {
-      name: string;
-      image: string;
-      id: string;
-      type: string;
-      plot_summary: string;
-      genre: string;
-      released: string;
-      status: string;
-      other_name: string;
-      episodes: string[][];
-      source: string;
-    };
-  };
+  animeData: animeInfo["anime"];
 };
 
-const Info = (props: Props) => {
+export default function Info({ animeData }: Props) {
   return (
     <div className=" text-white">
       <div className="flex mx-auto px-4 sm:px-6 lg:px-32 pt-40">
@@ -28,7 +15,7 @@ const Info = (props: Props) => {
             alt="Rurouni Kenshin: Meiji Kenkaku Romantan (2023)"
             className="w-[200px] h-[300px] rounded-lg shadow-lg"
             height="300"
-            src={props.data.results.image}
+            src={animeData.info?.poster}
             style={{
               aspectRatio: "200/300",
               objectFit: "cover",
@@ -37,7 +24,9 @@ const Info = (props: Props) => {
           />
         </div>
         <div className="flex-grow ml-8">
-          <h1 className="text-4xl font-bold mb-2">{props.data.results.name}</h1>
+          <h1 className="text-4xl font-bold mb-2">
+            {animeData.info?.name}
+          </h1>
           <div className="flex items-center space-x-2 my-4">
             <Badge variant="secondary">PG-13</Badge>
             <Badge variant="default">HD</Badge>
@@ -51,7 +40,7 @@ const Info = (props: Props) => {
             <Button variant="secondary">Add to List</Button>
           </div>
           <p className="text-gray-400 leading-loose">
-            {props.data.results.plot_summary}
+            {animeData.info?.description}
           </p>
         </div>
         <div className="flex-none w-[350px] ml-8">
@@ -87,6 +76,4 @@ const Info = (props: Props) => {
       </div>
     </div>
   );
-};
-
-export default Info;
+}
