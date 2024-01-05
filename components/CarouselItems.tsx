@@ -21,7 +21,7 @@ import Autoplay from "embla-carousel-autoplay";
 import { home } from "@/types/types";
 
 type Props = {
-  carouselData: home["spotlightAnimes"];
+  carouselData: ;
 };
 
 export default function CarouselItems({ carouselData }: Props) {

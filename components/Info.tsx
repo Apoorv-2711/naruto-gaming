@@ -3,10 +3,11 @@ import { Button } from "@/components/ui/button";
 import { animeInfo } from "@/types/types";
 
 type Props = {
-  animeData: animeInfo["anime"];
+  animeData: animeInfo;
 };
 
 export default function Info({ animeData }: Props) {
+  
   return (
     <div className=" text-white">
       <div className="flex mx-auto px-4 sm:px-6 lg:px-32 pt-40">
@@ -15,7 +16,7 @@ export default function Info({ animeData }: Props) {
             alt="Rurouni Kenshin: Meiji Kenkaku Romantan (2023)"
             className="w-[200px] h-[300px] rounded-lg shadow-lg"
             height="300"
-            src={animeData.info?.poster}
+            src={animeData.anime.info.poster}
             style={{
               aspectRatio: "200/300",
               objectFit: "cover",
@@ -25,7 +26,7 @@ export default function Info({ animeData }: Props) {
         </div>
         <div className="flex-grow ml-8">
           <h1 className="text-4xl font-bold mb-2">
-            {animeData.info?.name}
+            {animeData.anime.info.name}
           </h1>
           <div className="flex items-center space-x-2 my-4">
             <Badge variant="secondary">PG-13</Badge>
@@ -40,7 +41,7 @@ export default function Info({ animeData }: Props) {
             <Button variant="secondary">Add to List</Button>
           </div>
           <p className="text-gray-400 leading-loose">
-            {animeData.info?.description}
+            {animeData.anime.info.description}
           </p>
         </div>
         <div className="flex-none w-[350px] ml-8">
