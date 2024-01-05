@@ -1,14 +1,24 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import scrapeHomePage from "@/parser/homePage";
+import { NextApiRequest, NextApiResponse } from "next";
+import { ScrapedHomePage } from "@/models/parsers/homePage";
 
-export async function GET(request: Request) {
-  const getHome = await fetch("http://localhost:4000/anime/home", {
-    cache: "no-cache",
-  });
-  const home = await getHome.json();
-  const data = home;
-  return NextResponse.json(data, {
-    headers: {
-      "Cache-Control": "s-maxage=1, stale-while-revalidate",
-    },
-  });
+
+export async function GET(
+  req: NextApiRequest,
+  res: NextApiResponse<ReturnType<typeof scrapeHomePage>>
+) {
+  try {
+    const data = await scrapeHomePage();
+
+    console.log(data, "Data from api..");
+    return new Response(JSON.stringify(data), {
+      headers: { "content-type": "application/json" },
+    });
+  } catch (err: any) {
+    console.error(err);
+
+    return new Response(JSON.stringify(err));
+  }
+
 }

@@ -4,6 +4,7 @@ import type {
   RecommendedAnime,
   AnimeGeneralAboutInfo,
 } from "../anime";
+import { HttpError } from "http-errors";
 
 import type { ScrapedAnimeSearchResult } from "./animeSearch";
 
@@ -14,6 +15,6 @@ export interface ScrapedAnimeAboutInfo
     moreInfo: Record<string, string | string[]>;
   };
   seasons: Season[];
-  relatedAnimes: RelatedAnime[] | Error;
-  recommendedAnimes: RecommendedAnime[] | Error;
+  relatedAnimes: RelatedAnime[] | HttpError;
+  recommendedAnimes: RecommendedAnime[] | HttpError;
 }
