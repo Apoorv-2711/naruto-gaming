@@ -1,6 +1,6 @@
-import { z } from "zod";
+import * as z from "zod";
 
-const AnimeSchema = z.object({
+export const AnimeSchema = z.object({
   id: z.string().nullable(),
   name: z.string().nullable(),
   poster: z.string().nullable(),
@@ -13,32 +13,33 @@ const AnimeSchema = z.object({
   }),
 });
 
-type Anime = z.infer<typeof AnimeSchema>;
+// export type Anime = z.infer<typeof AnimeSchema>;
+export interface Anime extends z.TypeOf<typeof AnimeSchema> {}
 
-const CommonAnimePropsSchema = AnimeSchema.pick({
+export const CommonAnimePropsSchema = AnimeSchema.pick({
   id: true,
   name: true,
   poster: true,
 });
 
-type CommonAnimeProps = z.infer<typeof CommonAnimePropsSchema>;
+export type CommonAnimeProps = z.infer<typeof CommonAnimePropsSchema>;
 
-const Top10AnimeSchema = CommonAnimePropsSchema.extend({
+export const Top10AnimeSchema = CommonAnimePropsSchema.extend({
   rank: z.number().nullable(),
   episodes: AnimeSchema.shape.episodes,
 });
 
-type Top10Anime = z.infer<typeof Top10AnimeSchema>;
+export interface Top10Anime extends z.TypeOf<typeof Top10AnimeSchema> {}
 
-const Top10AnimeTimePeriodSchema = z.union([
+export const Top10AnimeTimePeriodSchema = z.union([
   z.literal("day"),
   z.literal("week"),
   z.literal("month"),
 ]);
 
-type Top10AnimeTimePeriod = z.infer<typeof Top10AnimeTimePeriodSchema>;
+export type Top10AnimeTimePeriod = z.infer<typeof Top10AnimeTimePeriodSchema>;
 
-const MostPopularAnimeSchema = AnimeSchema.extend({
+export const MostPopularAnimeSchema = AnimeSchema.extend({
   jname: z.string().nullable(),
 }).pick({
   id: true,
@@ -49,28 +50,30 @@ const MostPopularAnimeSchema = AnimeSchema.extend({
   jname: true,
 });
 
-type MostPopularAnime = z.infer<typeof MostPopularAnimeSchema>;
+export interface MostPopularAnime
+  extends z.TypeOf<typeof MostPopularAnimeSchema> {}
 
-const SpotlightAnimeSchema = MostPopularAnimeSchema.extend({
+export const SpotlightAnimeSchema = MostPopularAnimeSchema.extend({
   rank: Top10AnimeSchema.shape.rank,
   description: z.string().nullable(),
 });
 
-type SpotlightAnime = z.infer<typeof SpotlightAnimeSchema>;
+export interface SpotlightAnime extends z.TypeOf<typeof SpotlightAnimeSchema> {}
 
-const TrendingAnimeSchema = CommonAnimePropsSchema.extend({
+export const TrendingAnimeSchema = CommonAnimePropsSchema.extend({
   rank: Top10AnimeSchema.shape.rank,
 });
 
-type TrendingAnime = z.infer<typeof TrendingAnimeSchema>;
+export interface TrendingAnime extends z.TypeOf<typeof TrendingAnimeSchema> {}
 
-type LatestEpisodeAnime = z.infer<typeof AnimeSchema>;
+export interface LatestEpisodeAnime extends z.TypeOf<typeof AnimeSchema> {}
 
-type TopUpcomingAnime = z.infer<typeof AnimeSchema>;
+export interface TopUpcomingAnime extends z.TypeOf<typeof AnimeSchema> {}
 
-type TopAiringAnime = z.infer<typeof MostPopularAnimeSchema>;
+export interface TopAiringAnime
+  extends z.TypeOf<typeof MostPopularAnimeSchema> {}
 
-const AnimeGeneralAboutInfoSchema = CommonAnimePropsSchema.extend({
+export const AnimeGeneralAboutInfoSchema = CommonAnimePropsSchema.extend({
   description: SpotlightAnimeSchema.shape.description,
   stats: z.object({
     quality: z.string().nullable(),
@@ -81,46 +84,49 @@ const AnimeGeneralAboutInfoSchema = CommonAnimePropsSchema.extend({
   }),
 });
 
-type AnimeGeneralAboutInfo = z.infer<typeof AnimeGeneralAboutInfoSchema>;
+export interface AnimeGeneralAboutInfo
+  extends z.TypeOf<typeof AnimeGeneralAboutInfoSchema> {}
 
-type RecommendedAnime = z.infer<typeof AnimeSchema>;
+export interface RecommendedAnime extends z.TypeOf<typeof AnimeSchema> {}
 
-type RelatedAnime = z.infer<typeof MostPopularAnimeSchema>;
+export interface RelatedAnime extends z.TypeOf<typeof MostPopularAnimeSchema> {}
 
-const SeasonSchema = CommonAnimePropsSchema.extend({
+export const SeasonSchema = CommonAnimePropsSchema.extend({
   isCurrent: z.boolean(),
   title: z.string().nullable(),
 });
 
-type Season = z.infer<typeof SeasonSchema>;
+export interface Season extends z.TypeOf<typeof SeasonSchema> {}
 
-const AnimeSearchSuggestionSchema = MostPopularAnimeSchema.omit({
+export const AnimeSearchSuggestionSchema = MostPopularAnimeSchema.omit({
   episodes: true,
   type: true,
 }).extend({
   moreInfo: z.string().nullable(),
 });
 
-type AnimeSearchSuggestion = z.infer<typeof AnimeSearchSuggestionSchema>;
+export interface AnimeSearchSuggestion
+  extends z.TypeOf<typeof AnimeSearchSuggestionSchema> {}
 
-const AnimeEpisodeSchema = SeasonSchema.extend({
+export const AnimeEpisodeSchema = SeasonSchema.extend({
   episodeId: z.string().nullable(),
   number: z.number(),
   isFiller: z.boolean(),
 });
 
-type AnimeEpisode = z.infer<typeof AnimeEpisodeSchema>;
+export type AnimeEpisodesss = z.infer<typeof AnimeEpisodeSchema>;
+export interface AnimeEpisode extends z.TypeOf<typeof AnimeEpisodeSchema> {}
 
-const SubEpisodeSchema = z.object({
+export const SubEpisodeSchema = z.object({
   serverName: z.string(),
   serverId: z.number().nullable(),
 });
 
-type SubEpisode = z.infer<typeof SubEpisodeSchema>;
+export interface SubEpisode extends z.TypeOf<typeof SubEpisodeSchema> {}
 
-type DubEpisode = z.infer<typeof SubEpisodeSchema>;
+export interface DubEpisode extends z.TypeOf<typeof SubEpisodeSchema> {}
 
-const AnimeCategoriesSchema = z.union([
+export const AnimeCategoriesSchema = z.union([
   z.literal("most-favorite"),
   z.literal("most-popular"),
   z.literal("subbed-anime"),
@@ -137,9 +143,9 @@ const AnimeCategoriesSchema = z.union([
   z.literal("completed"),
 ]);
 
-type AnimeCategories = z.infer<typeof AnimeCategoriesSchema>;
+export type AnimeCategories = z.infer<typeof AnimeCategoriesSchema>;
 
-const AnimeServerSchema = z.union([
+export const AnimeServerSchema = z.union([
   z.literal("vidstreaming"),
   z.literal("megacloud"),
   z.literal("streamsb"),
@@ -147,9 +153,9 @@ const AnimeServerSchema = z.union([
   z.literal("vidcloud"),
 ]);
 
-type AnimeServer = z.infer<typeof AnimeServerSchema>;
+export type AnimeServer = z.infer<typeof AnimeServerSchema>;
 
-const ServersSchema = z.enum([
+export const Servers = z.enum([
   "vidstreaming",
   "megacloud",
   "streamsb",
@@ -163,29 +169,3 @@ const ServersSchema = z.enum([
   "mycloud",
   "filemoon",
 ]);
-
-type Servers = z.infer<typeof ServersSchema>;
-
-export type {
-  Anime,
-  CommonAnimeProps,
-  Top10Anime,
-  Top10AnimeTimePeriod,
-  MostPopularAnime,
-  SpotlightAnime,
-  TrendingAnime,
-  LatestEpisodeAnime,
-  TopUpcomingAnime,
-  TopAiringAnime,
-  AnimeGeneralAboutInfo,
-  RecommendedAnime,
-  RelatedAnime,
-  Season,
-  AnimeSearchSuggestion,
-  AnimeEpisode,
-  SubEpisode,
-  DubEpisode,
-  AnimeCategories,
-  AnimeServer,
-  Servers,
-};

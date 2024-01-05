@@ -1,6 +1,6 @@
-import { z } from "zod";
+import * as z from "zod";
 
-const VideoSchema = z
+export const VideoSchema = z
   .object({
     url: z.string(),
     quality: z.string().optional(),
@@ -11,7 +11,7 @@ const VideoSchema = z
 
 type Video = z.infer<typeof VideoSchema>;
 
-const SubtitleSchema = z.object({
+export const SubtitleSchema = z.object({
   id: z.string().optional(),
   url: z.string(),
   lang: z.string(),
@@ -19,7 +19,7 @@ const SubtitleSchema = z.object({
 
 type Subtitle = z.infer<typeof SubtitleSchema>;
 
-const IntroSchema = z.object({
+export const IntroSchema = z.object({
   start: z.number(),
   end: z.number(),
 });
