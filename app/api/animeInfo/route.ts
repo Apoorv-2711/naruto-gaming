@@ -2,16 +2,8 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const { id } = await request.json();
-  const getAnimeId = await fetch(
-    `https://api.anime-dex.workers.dev/search/${id}`,
-    {
-      cache: "no-cache",
-    }
-  );
-  const anime = await getAnimeId.json();
-  const animeId = anime.results[0].id;
   const getAnimeInfo = await fetch(
-    `https://api.anime-dex.workers.dev/anime/${animeId}`,
+    `http://localhost:4000/anime/info?id=${id}`,
     {
       cache: "no-cache",
     }

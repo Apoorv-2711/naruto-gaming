@@ -1,7 +1,7 @@
 "use client";
-import { gogoPopular } from "@/types/types";
+import { home } from "@/types/types";
 import Image from "next/image";
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import {
   Carousel,
   CarouselContent,
@@ -9,19 +9,45 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { InsideHoverCard } from "./InsideHoverCard";
 
 type TrendingProps = {
-  trendingData: gogoPopular[];
+  trendingData: home["trendingAnimes"];
 };
 
 const Trending: FC<TrendingProps> = ({ trendingData }) => {
+  const [hover, setHover] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [idx, setIdx] = useState("");
+
+  const handleHover = (e: React.MouseEvent<HTMLImageElement>) => {
+    setIdx(e.currentTarget.alt);
+    setHover(true);
+  };
+
+  const handleHoverLeave = () => {
+    setHover(false);
+  };
+
+  const handleMousePosition = (e: React.MouseEvent<HTMLImageElement>) => {
+    setMousePosition({
+      x: e.clientX,
+      y: e.clientY,
+    });
+  };
+
   return (
     <div className="mx-auto">
       <h3 className="text-2xl font-bold mt-12 mb-4 ml-4 text-white">
         Trending
       </h3>
       <div className="flex overflow-x-auto p-6 px-14 items-center justify-center ">
-        <Carousel className="w-full ">
+        <Carousel className="w-full">
           <CarouselContent className="-ml-3">
             {trendingData.map((item, idx) => {
               return (
@@ -36,23 +62,39 @@ const Trending: FC<TrendingProps> = ({ trendingData }) => {
                         transform: "rotate(180deg)",
                       }}
                     >
-                      <h2 className="">{`${item.title.slice(0, 15)}...`}</h2>
+                      <h2 className="">{`${item.name.slice(0, 15)}...`}</h2>
                     </div>
                     <span className="text-white text-2xl font-bold">
                       {(idx + 1).toString().padStart(2, "0")}
                     </span>
                   </div>
-                  <Image
-                    alt={item.title}
-                    className="w-40 h-60 rounded-md"
-                    height="300"
-                    src={item.image}
-                    style={{
-                      aspectRatio: "200/300",
-                      objectFit: "cover",
-                    }}
-                    width="200"
-                  />
+                  <Popover open={hover} onOpenChange={
+                    (e) => {
+                      if (!e) {
+                        setHover(false);
+                      }
+                    }
+                  }>
+                    <PopoverTrigger asChild>
+                      <Image
+                        alt={item.id}
+                        className="realtive w-40 h-60 rounded-md z-0"
+                        height="1080"
+                        src={item.poster}
+                        style={{
+                          aspectRatio: "200/300",
+                          objectFit: "cover",
+                        }}
+                        width="1080"
+                        onMouseOver={handleHover}
+                        onMouseLeave={handleHoverLeave}
+                        onMouseMove={handleMousePosition}
+                      />
+                    </PopoverTrigger>
+                    <PopoverContent className="p-0 m-0 border-none outline-none bg-black ">
+                      <InsideHoverCard />
+                    </PopoverContent>
+                  </Popover>
                 </CarouselItem>
               );
             })}

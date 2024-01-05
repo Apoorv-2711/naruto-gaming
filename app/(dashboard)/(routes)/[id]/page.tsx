@@ -1,5 +1,4 @@
 import Info from "@/components/Info";
-import React from "react";
 type Props = {
   params: {
     id: string;
@@ -9,7 +8,7 @@ type Props = {
 const anime = async (props: Props) => {
   const { id } = props.params;
 
-  const dataForHome = async (id: string) => {
+  const dataforAnimeInfo = async (id: string) => {
     const res = await fetch(`http://localhost:3000/api/animeInfo`, {
       cache: "no-cache",
       method: "POST",
@@ -24,11 +23,11 @@ const anime = async (props: Props) => {
     }
   };
 
-  const data = await dataForHome(id);
+  const data = await dataforAnimeInfo(id);
 
   return (
     <div>
-      <Info data={data} />
+      <Info animeData={data} />
     </div>
   );
 };

@@ -10,6 +10,10 @@ const nextConfig = {
         hostname: "gogocdn.net",
         protocol: "https",
       },
+      {
+        hostname: "img.flawlessfiles.com",
+        protocol: "https",
+      }
     ],
   },
 };

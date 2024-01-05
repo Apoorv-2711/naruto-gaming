@@ -3,6 +3,7 @@ import scrapeHomePage from "@/parser/homePage";
 import { NextApiRequest, NextApiResponse } from "next";
 import { ScrapedHomePage } from "@/models/parsers/homePage";
 
+
 export async function GET(
   req: NextApiRequest,
   res: NextApiResponse<ReturnType<typeof scrapeHomePage>>
@@ -19,4 +20,5 @@ export async function GET(
 
     return new Response(JSON.stringify(err));
   }
+
 }
