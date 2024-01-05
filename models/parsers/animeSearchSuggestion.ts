@@ -1,3 +1,4 @@
+import { HttpError } from "http-errors";
 import {
   AnimeSearchSuggestionSchema,
   type AnimeSearchSuggestion,
@@ -5,7 +6,7 @@ import {
 import * as z from "zod";
 
 export const ScrapedAnimeSearchSuggestionSchema = z.object({
-  suggestions: z.array(AnimeSearchSuggestionSchema).or(z.instanceof(Error)),
+  suggestions: z.array(AnimeSearchSuggestionSchema).or(z.instanceof(HttpError)),
 });
 
 export type ScrapedAnimeSearchSuggestion = z.infer<

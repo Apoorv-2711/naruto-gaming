@@ -4,13 +4,13 @@ import type {
   MostPopularAnime,
   Top10AnimeTimePeriod,
 } from "@/models/anime";
-
+import createHttpError, { type HttpError } from "http-errors";
 import type { CheerioAPI, SelectorType } from "cheerio";
 
 export const extractAnimes = (
   $: CheerioAPI,
   selector: SelectorType
-): Anime[] | Error => {
+): Anime[] | HttpError => {
   try {
     const animes: Anime[] = [];
 
@@ -77,14 +77,16 @@ export const extractAnimes = (
     });
     return animes;
   } catch (err: any) {
-    throw new Error(err?.message || "Something Went Wrong");
+    throw createHttpError.InternalServerError(
+      err?.message || "Something went wrong"
+    );
   }
 };
 
 export const extractTop10Animes = (
   $: CheerioAPI,
   period: Top10AnimeTimePeriod
-): Top10Anime[] | Error => {
+): Top10Anime[] | HttpError => {
   try {
     const animes: Top10Anime[] = [];
     /*
@@ -140,14 +142,16 @@ export const extractTop10Animes = (
     });
     return animes;
   } catch (err: any) {
-    throw new Error(err?.message || "Something Went Wrong");
+    throw createHttpError.InternalServerError(
+      err?.message || "Something went wrong"
+    );
   }
 };
 
 export const extractMostPopularAnimes = (
   $: CheerioAPI,
   selector: SelectorType
-): MostPopularAnime[] | Error => {
+): MostPopularAnime[] | HttpError => {
   try {
     const animes: MostPopularAnime[] = [];
 
@@ -204,7 +208,9 @@ export const extractMostPopularAnimes = (
 
     return animes;
   } catch (err: any) {
-    throw new Error(err?.message || "Something Went Wrong");
+    throw createHttpError.InternalServerError(
+      err?.message || "Something went wrong"
+    );
   }
 };
 

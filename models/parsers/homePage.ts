@@ -6,25 +6,25 @@ import {
   AnimeSchema,
   MostPopularAnimeSchema,
 } from "@/models/anime";
+import { HttpError } from "http-errors";
+const LatestEpisodeAnimeSchema = AnimeSchema;
 
-const LatestEpisodeAnimeSchema = AnimeSchema.extend({});
+const TopUpcomingAnime = AnimeSchema;
 
-const TopUpcomingAnime = AnimeSchema.extend({});
-
-const TopAiringAnime = MostPopularAnimeSchema.extend({});
+const TopAiringAnime = MostPopularAnimeSchema;
 
 export const ScrapedHomePageSchema = ScrapedAnimeCategorySchema.pick({
   genres: true,
   top10Animes: true,
 }).merge(
   z.object({
-    spotlightAnimes: z.array(SpotlightAnimeSchema).or(z.instanceof(Error)),
-    trendingAnimes: z.array(TrendingAnimeSchema).or(z.instanceof(Error)),
+    spotlightAnimes: z.array(SpotlightAnimeSchema).or(z.instanceof(HttpError)),
+    trendingAnimes: z.array(TrendingAnimeSchema).or(z.instanceof(HttpError)),
     latestEpisodeAnimes: z
       .array(LatestEpisodeAnimeSchema)
-      .or(z.instanceof(Error)),
-    topUpcomingAnimes: z.array(TopUpcomingAnime).or(z.instanceof(Error)),
-    topAiringAnimes: z.array(TopAiringAnime).or(z.instanceof(Error)),
+      .or(z.instanceof(HttpError)),
+    topUpcomingAnimes: z.array(TopUpcomingAnime).or(z.instanceof(HttpError)),
+    topAiringAnimes: z.array(TopAiringAnime).or(z.instanceof(HttpError)),
   })
 );
 
