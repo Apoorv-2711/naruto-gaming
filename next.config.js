@@ -13,6 +13,10 @@ const nextConfig = {
       {
         hostname: "img.flawlessfiles.com",
         protocol: "https",
+      },
+      {
+        hostname: "aniwatch.to",
+        protocol: "https",
       }
     ],
   },

@@ -18,10 +18,9 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import { home } from "@/types/types";
 
 type Props = {
-  carouselData: ;
+  carouselData: any[];
 };
 
 export default function CarouselItems({ carouselData }: Props) {

@@ -1,6 +1,8 @@
 import CarouselItems from "@/components/CarouselItems";
+import CommentSection from "@/components/CommentSection";
 import RecentSection from "@/components/RecentSection";
 import ShareSection from "@/components/ShareSection";
+import TopSection from "@/components/TopSection";
 import Trending from "@/components/Trending";
 
 const dataForHome = async () => {
@@ -31,6 +33,8 @@ const home = async () => {
       <Trending trendingData={trendingData} />
       <ShareSection />
       {/* <RecentSection /> */}
+      <CommentSection />
+      <TopSection />
     </div>
   );
 };
