@@ -41,7 +41,7 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
       avatarFallback: "AK",
       name: "Arika",
       description: "- 4 minutes ago",
-      comment: "Don't show this episode to hancock 😳",
+      comment: "Don't show this episode to hancock 😳 sdegwde jfhkj kjhfksjahc j kjhfkjhf k jharfkljh askjfh wkjheflkjhf aef ",
       badge: "One Piece",
     },
     {
@@ -111,7 +111,7 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
 
   return (
     <div
-      className={"bg-[#262525] flex flex-row h-[300px] w-full justify-between"}
+      className= "flex flex-row h-[300px] w-full justify-between bg-gradient-to-t to-[#2d2c2c] from-[#201f1f]"
     >
       <Image
         alt="comment"
@@ -163,7 +163,7 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
                     isLeftClick ? "cursor-grabbing" : "cursor-grab"
                   }`}
                 >
-                  <Card className="rounded-lg shadow-lg border-none bg-gradient-to-t to-[#414040] from-[#262525] ">
+                  <Card className="rounded-lg shadow-lg border-none bg-gradient-to-t to-[#414040] from-[#262525] h-full flex flex-col justify-between">
                     <CardHeader className="space-y-4">
                       <div className="flex items-center justify-start space-x-2">
                         <Avatar>
@@ -179,7 +179,8 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
                           </CardDescription>
                         </div>
                       </div>
-                      <p className="text-white text-sm">{item.comment}</p>
+                      <p className="text-white text-sm">{item.comment.slice(0, 40) + "..."
+                      }</p>
                     </CardHeader>
                     <CardContent className="p-4">
                       <Badge className="mt-2" variant="secondary">
@@ -192,36 +193,6 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
             })}
           </CarouselContent>
         </Carousel>
-        {/* <div className="flex flex-row overflow-x-auto py-4 space-x-6">
-          {cardData.map((item, idx) => {
-            return (
-              <Card className="flex flex-col justify-between hover:bg-[#525252] transition-colors duration-200 rounded-lg shadow-lg border-none bg-gradient-to-t to-[#414040] from-[#262525]">
-                <CardHeader className="space-y-4">
-                  <div className="flex items-center justify-start space-x-2">
-                    <Avatar>
-                      <AvatarImage alt={item.name} src={item.avatar} />
-                      <AvatarFallback>{item.avatarFallback}</AvatarFallback>
-                    </Avatar>
-                    <div>
-                      <CardTitle className="text-white font-semibold">
-                        {item.name}
-                      </CardTitle>
-                      <CardDescription className="text-gray-400">
-                        {item.description}
-                      </CardDescription>
-                    </div>
-                  </div>
-                  <p className="text-white text-sm">{item.comment}</p>
-                </CardHeader>
-                <CardContent className="p-4">
-                  <Badge className="mt-2" variant="secondary">
-                    {item.badge}
-                  </Badge>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div> */}
       </div>
     </div>
   );
