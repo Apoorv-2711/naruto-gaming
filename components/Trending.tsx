@@ -52,7 +52,7 @@ const Trending: FC<TrendingProps> = ({ trendingData }) => {
                   </div>
                   <Image
                     alt={item.id}
-                    className="realtive w-40 h-60 rounded-md z-0"
+                    className="realtive w-40 h-60 rounded-md z-0 cursor-pointer"
                     height="1080"
                     src={item.poster}
                     style={{

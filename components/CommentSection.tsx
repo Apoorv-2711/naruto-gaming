@@ -13,6 +13,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Badge } from "./ui/badge";
 import { Label } from "./ui/label";
 import Image from "next/image";
+import { Carousel, CarouselContent, CarouselItem } from "./ui/carousel";
 
 type CommentSectionProps = {};
 
@@ -20,9 +21,23 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
   const [showComments, setShowComments] = useState<boolean>(true);
   const [activeTab, setActiveTab] = useState<string>("newest_comment");
 
+  const [isLeftClick, setIsLeftClick] = useState<boolean>(false);
+
+  window.addEventListener("mousedown", (e) => {
+    if (e.button === 0) {
+      setIsLeftClick(true);
+    }
+  });
+
+  window.addEventListener("mouseup", (e) => {
+    if (e.button === 0) {
+      setIsLeftClick(false);
+    }
+  });
+
   const cardData = [
     {
-      avatar: "/placeholder.svg?height=40&width=40",
+      avatar: "https://avatars.githubusercontent.com/u/124599?v=4",
       avatarFallback: "AK",
       name: "Arika",
       description: "- 4 minutes ago",
@@ -30,15 +45,15 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
       badge: "One Piece",
     },
     {
-      avatar: "/placeholder.svg?height=40&width=40",
+      avatar: "https://avatars.githubusercontent.com/u/124599?v=4",
       avatarFallback: "LS",
       name: "Lost soul",
-      description: "ANGELFISH - 4 minutes ago",
+      description: "- 4 minutes ago",
       comment: "rate the animation 🔥 or 💩",
       badge: "One Piece",
     },
     {
-      avatar: "/placeholder.svg?height=40&width=40",
+      avatar: "https://avatars.githubusercontent.com/u/124599?v=4",
       avatarFallback: "AK",
       name: "Arika",
       description: "- 4 minutes ago",
@@ -46,7 +61,23 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
       badge: "One Piece",
     },
     {
-      avatar: "/placeholder.svg?height=40&width=40",
+      avatar: "https://avatars.githubusercontent.com/u/124599?v=4",
+      avatarFallback: "AK",
+      name: "Arika",
+      description: "- 4 minutes ago",
+      comment: "Don't show this episode to hancock 😳",
+      badge: "One Piece",
+    },
+    {
+      avatar: "https://avatars.githubusercontent.com/u/124599?v=4",
+      avatarFallback: "AK",
+      name: "Arika",
+      description: "- 4 minutes ago",
+      comment: "Don't show this episode to hancock 😳",
+      badge: "One Piece",
+    },
+    {
+      avatar: "https://avatars.githubusercontent.com/u/124599?v=4",
       avatarFallback: "AK",
       name: "Arika",
       description: "- 4 minutes ago",
@@ -79,18 +110,18 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
   }
 
   return (
-    <div className={"bg-[#262525] flex flex-row h-[300px]"}>
-      <div className="w-[300px] h-[300px] flex flex-col justify-end">
-        <Image
-          alt="comment"
-          className="relative h-[300px] min-w-[300px] rounded-xl"
-          height="1080"
-          src="https://aniwatch.to/images/discussion.png"
-          width="1080"
-        />
-      </div>
-      <div className="p-6 absolute left-[300px]">
-        <div className="flex justify-between items-center mb-4">
+    <div
+      className={"bg-[#262525] flex flex-row h-[300px] w-full justify-between"}
+    >
+      <Image
+        alt="comment"
+        className="h-[300px] w-[300px] hidden lg:block"
+        height="1080"
+        src="https://aniwatch.to/images/discussion.png"
+        width="1080"
+      />
+      <div className="p-6 lg:w-[calc(100%-300px)] w-full">
+        <div className="flex flex-row justify-between items-center mb-4">
           <Tabs defaultValue={activeTab}>
             <TabsList className="bg-transparent">
               <TabsTrigger
@@ -110,7 +141,10 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
             </TabsList>
           </Tabs>
           <div className="flex flex-row  justify-center items-center gap-x-2">
-            <Label className="text-white" htmlFor="show-comments">
+            <Label
+              className="text-white hidden sm:block"
+              htmlFor="show-comments"
+            >
               Show Comments
             </Label>
             <Switch
@@ -120,10 +154,48 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
             />
           </div>
         </div>
-        <div className="flex overflow-x-auto py-4 space-x-6">
+        <Carousel className="pl-1 w-full">
+          <CarouselContent>
+            {cardData.map((item, idx) => {
+              return (
+                <CarouselItem
+                  className={`max-h-60  justify-center space-x-1 max-w-[300px] ${
+                    isLeftClick ? "cursor-grabbing" : "cursor-grab"
+                  }`}
+                >
+                  <Card className="rounded-lg shadow-lg border-none bg-gradient-to-t to-[#414040] from-[#262525] ">
+                    <CardHeader className="space-y-4">
+                      <div className="flex items-center justify-start space-x-2">
+                        <Avatar>
+                          <AvatarImage alt={item.name} src={item.avatar} />
+                          <AvatarFallback>{item.avatarFallback}</AvatarFallback>
+                        </Avatar>
+                        <div>
+                          <CardTitle className="text-white font-semibold">
+                            {item.name}
+                          </CardTitle>
+                          <CardDescription className="text-gray-400 text-xs">
+                            {item.description}
+                          </CardDescription>
+                        </div>
+                      </div>
+                      <p className="text-white text-sm">{item.comment}</p>
+                    </CardHeader>
+                    <CardContent className="p-4">
+                      <Badge className="mt-2" variant="secondary">
+                        {item.badge}
+                      </Badge>
+                    </CardContent>
+                  </Card>
+                </CarouselItem>
+              );
+            })}
+          </CarouselContent>
+        </Carousel>
+        {/* <div className="flex flex-row overflow-x-auto py-4 space-x-6">
           {cardData.map((item, idx) => {
             return (
-              <Card className="flex flex-col justify-between w-[300px] hover:bg-[#525252] transition-colors duration-200 rounded-lg shadow-lg border-none bg-gradient-to-t to-[#414040] from-[#262525]">
+              <Card className="flex flex-col justify-between hover:bg-[#525252] transition-colors duration-200 rounded-lg shadow-lg border-none bg-gradient-to-t to-[#414040] from-[#262525]">
                 <CardHeader className="space-y-4">
                   <div className="flex items-center justify-start space-x-2">
                     <Avatar>
@@ -149,7 +221,7 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
               </Card>
             );
           })}
-        </div>
+        </div> */}
       </div>
     </div>
   );
