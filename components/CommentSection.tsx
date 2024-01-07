@@ -162,6 +162,7 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
                   className={`max-h-60  justify-center space-x-1 max-w-[300px] ${
                     isLeftClick ? "cursor-grabbing" : "cursor-grab"
                   }`}
+                  key={idx}
                 >
                   <Card className="rounded-lg shadow-lg border-none bg-gradient-to-t to-[#414040] from-[#262525] h-full flex flex-col justify-between">
                     <CardHeader className="space-y-4">
