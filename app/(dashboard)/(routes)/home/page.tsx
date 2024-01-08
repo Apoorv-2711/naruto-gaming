@@ -2,7 +2,7 @@ import CarouselItems from "@/components/CarouselItems";
 import CommentSection from "@/components/CommentSection";
 import RecentSection from "@/components/RecentSection";
 import ShareSection from "@/components/ShareSection";
-import TopSection from "@/components/TopSection";
+import TopAiringSection from "@/components/TopAiringSection";
 import Trending from "@/components/Trending";
 import { Metadata } from "next";
 
@@ -30,9 +30,10 @@ const dataForHome = async () => {
 };
 
 const home = async () => {
-  const carouselDataMain = await dataForHome();
-  const carouselData = carouselDataMain.spotlightAnimes;
-  const trendingData = carouselDataMain.trendingAnimes;
+  const data = await dataForHome();
+  const carouselData = data.spotlightAnimes;
+  const trendingData = data.trendingAnimes;
+  const topAiringAnimes = data.topAiringAnimes;
 
   return (
     <div className="h-full">
@@ -41,7 +42,7 @@ const home = async () => {
       <ShareSection />
       {/* <RecentSection /> */}
       <CommentSection />
-      <TopSection />
+      <TopAiringSection topAiringAnimes={topAiringAnimes} />
     </div>
   );
 };

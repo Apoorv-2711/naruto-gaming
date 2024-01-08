@@ -9,8 +9,6 @@ export async function GET(
 ) {
   try {
     const data = await scrapeHomePage();
-
-    console.log(data, "Data from api..");
     return new Response(JSON.stringify(data), {
       headers: { "content-type": "application/json" },
     });

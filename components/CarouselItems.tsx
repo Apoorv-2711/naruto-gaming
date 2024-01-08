@@ -5,8 +5,10 @@ import { Button } from "./ui/button";
 import {
   CalendarDaysIcon,
   Clock5Icon,
+  Info,
   Mic,
   PlayCircle,
+  PlayCircleIcon,
   Subtitles,
 } from "lucide-react";
 import Link from "next/link";
@@ -18,9 +20,10 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { home } from "@/types/types";
 
 type Props = {
-  carouselData: any[];
+  carouselData: home["spotlightAnimes"];
 };
 
 export default function CarouselItems({ carouselData }: Props) {
@@ -77,7 +80,7 @@ export default function CarouselItems({ carouselData }: Props) {
                         </Badge>
                         <Badge
                           variant="default"
-                          className="flex flex-row  items-center justify-center"
+                          className="flex flex-row items-center justify-center"
                         >
                           <CalendarDaysIcon size={15} className="mr-1" />
                           <span>{item.otherInfo[2]}</span>
@@ -119,9 +122,21 @@ export default function CarouselItems({ carouselData }: Props) {
                         ...
                       </p>
                       <div className="flex space-x-4">
-                        <Button variant="default">Watch Now</Button>
+                        <Button
+                          variant="default"
+                          className="flex justify-center items-center gap-x-1"
+                        >
+                          <PlayCircleIcon size={15} />
+                          <span>Watch Now</span>
+                        </Button>
                         <Link href={`${item.id}`}>
-                          <Button variant="secondary">Detail</Button>
+                          <Button
+                            variant="secondary"
+                            className="flex items-center justify-center gap-x-1"
+                          >
+                            <Info size={15} />
+                            <span>Detail</span>
+                          </Button>
                         </Link>
                       </div>
                     </div>

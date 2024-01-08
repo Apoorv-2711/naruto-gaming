@@ -38,13 +38,21 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
 
   const cardData = [
     {
-      avatar: "https://avatars.githubusercontent.com/u/124599?v=4",
+      avatar: "https://avatars.githubusercontent.com/u/60302130?v=4",
       avatarFallback: "AK",
-      name: "Arika",
+      name: "Naruto",
       description: "- 4 minutes ago",
       comment:
         "Don't show this episode to hancock 😳 sdegwde jfhkj kjhfksjahc j kjhfkjhf k jharfkljh askjfh wkjheflkjhf aef ",
       badge: "One Piece",
+    },
+    {
+      avatar: "https://avatars.githubusercontent.com/u/75885286?v=4",
+      avatarFallback: "VK",
+      name: "Punisher",
+      description: "- 4 minutes ago",
+      comment: "This show is  lit 🔥🔥",
+      badge: "Jujustu Kaisen S2",
     },
     {
       avatar: "https://avatars.githubusercontent.com/u/124599?v=4",
@@ -61,14 +69,6 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
       description: "- 4 minutes ago",
       comment: "Don't show this episode to hancock 😳",
       badge: "One Piece",
-    },
-    {
-      avatar: "https://avatars.githubusercontent.com/u/75885286?v=4",
-      avatarFallback: "VK",
-      name: "Punisher",
-      description: "- 4 minutes ago",
-      comment: "This show is  lit 🔥🔥",
-      badge: "Jujustu Kaisen S2",
     },
     {
       avatar: "https://avatars.githubusercontent.com/u/124599?v=4",
@@ -168,7 +168,7 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
                     <CardHeader className="space-y-4">
                       <div className="flex items-center justify-start space-x-2">
                         <Avatar>
-                          <AvatarImage alt={item.name} src={item.avatar} />
+                          <AvatarImage alt={item.name} src={item.avatar}  />
                           <AvatarFallback>{item.avatarFallback}</AvatarFallback>
                         </Avatar>
                         <div>

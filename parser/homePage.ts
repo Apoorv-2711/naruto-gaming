@@ -167,8 +167,10 @@ async function scrapeHomePage(): Promise<ScrapedHomePage | HttpError> {
       "#anime-featured .row div:nth-of-type(1) .anif-block-ul ul li";
     $(topAiringSelector).each((i, el) => {
       const otherInfo = $(el)
-        .find(".fd-infor .fdi-item")
-        .map((i, el) => $(el).text().trim())
+        .find(".fd-infor .fdi-item .tick .tick-sub .tick-dub .tick-item")
+        .map((i, el) => {$(el).text().trim()
+          console.log(el,"el")
+        })
         .get();
 
       res.topAiringAnimes.push({
