@@ -93,7 +93,7 @@ export const extractTop10Animes = (
             In the top10anime div there are 3 divs with ids top-10-day , top-10-week , top-10-month
              so we have to take the day week month from the period which is defined above
         */
-    const selector = `#top-10-${period} ul li`;
+    const selector = `#top-viewed-${period} ul li `;
 
     $(selector).each((_, el) => {
       const animeId =

@@ -27,7 +27,7 @@ export default function CarouselItems({ carouselData }: Props) {
   return (
     <>
       <Carousel
-        className="w-full"
+        className="w-full "
         plugins={[
           Autoplay({
             delay: 10000,
@@ -57,7 +57,9 @@ export default function CarouselItems({ carouselData }: Props) {
                       <h2 className="text-lg font-bold">
                         #{item.rank} Spotlight
                       </h2>
-                      <h1 className="text-4xl font-bold mt-2">{item.name}</h1>
+                      <h1 className="xs:text-2xl sm:text-3xl md:text-4xl     font-bold mt-2">
+                        {item.name}
+                      </h1>
                       <div className="flex items-center space-x-3 my-4">
                         <Badge
                           variant="secondary"
@@ -110,7 +112,7 @@ export default function CarouselItems({ carouselData }: Props) {
                           </Badge>
                         </div>
                       </div>
-                      <p className="max-w-2xl mb-6">
+                      <p className="hidden md:block max-w-2xl mb-6">
                         {item.description
                           .replace(/(<([^>]+)>)/gi, "")
                           .substring(0, 180)}

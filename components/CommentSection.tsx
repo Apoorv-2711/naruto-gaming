@@ -23,17 +23,18 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
 
   const [isLeftClick, setIsLeftClick] = useState<boolean>(false);
 
-  window.addEventListener("mousedown", (e) => {
-    if (e.button === 0) {
-      setIsLeftClick(true);
-    }
-  });
-
-  window.addEventListener("mouseup", (e) => {
-    if (e.button === 0) {
-      setIsLeftClick(false);
-    }
-  });
+  if (typeof window !== "undefined") {
+    window.addEventListener("mousedown", (e) => {
+      if (e.button === 0) {
+        setIsLeftClick(true);
+      }
+    });
+    window.addEventListener("mouseup", (e) => {
+      if (e.button === 0) {
+        setIsLeftClick(false);
+      }
+    });
+  }
 
   const cardData = [
     {
