@@ -41,7 +41,8 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
       avatarFallback: "AK",
       name: "Arika",
       description: "- 4 minutes ago",
-      comment: "Don't show this episode to hancock 😳 sdegwde jfhkj kjhfksjahc j kjhfkjhf k jharfkljh askjfh wkjheflkjhf aef ",
+      comment:
+        "Don't show this episode to hancock 😳 sdegwde jfhkj kjhfksjahc j kjhfkjhf k jharfkljh askjfh wkjheflkjhf aef ",
       badge: "One Piece",
     },
     {
@@ -53,7 +54,7 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
       badge: "One Piece",
     },
     {
-      avatar: "https://avatars.githubusercontent.com/u/124599?v=4",
+      avatar: "https://avatars.githubusercontent.com/u/75885286?v=4",
       avatarFallback: "AK",
       name: "Arika",
       description: "- 4 minutes ago",
@@ -61,12 +62,12 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
       badge: "One Piece",
     },
     {
-      avatar: "https://avatars.githubusercontent.com/u/124599?v=4",
-      avatarFallback: "AK",
-      name: "Arika",
+      avatar: "https://avatars.githubusercontent.com/u/75885286?v=4",
+      avatarFallback: "VK",
+      name: "Punisher",
       description: "- 4 minutes ago",
-      comment: "Don't show this episode to hancock 😳",
-      badge: "One Piece",
+      comment: "This show is  lit 🔥🔥",
+      badge: "Jujustu Kaisen S2",
     },
     {
       avatar: "https://avatars.githubusercontent.com/u/124599?v=4",
@@ -110,9 +111,7 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
   }
 
   return (
-    <div
-      className= "flex flex-row h-[300px] w-full justify-between bg-gradient-to-t to-[#2d2c2c] from-[#201f1f]"
-    >
+    <div className="flex flex-row h-[300px] w-full justify-between bg-gradient-to-t to-[#2d2c2c] from-[#201f1f]">
       <Image
         alt="comment"
         className="h-[300px] w-[300px] hidden lg:block"
@@ -180,8 +179,9 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
                           </CardDescription>
                         </div>
                       </div>
-                      <p className="text-white text-sm">{item.comment.slice(0, 40) + "..."
-                      }</p>
+                      <p className="text-white text-sm">
+                        {item.comment.slice(0, 40) + "..."}
+                      </p>
                     </CardHeader>
                     <CardContent className="p-4">
                       <Badge className="mt-2" variant="secondary">

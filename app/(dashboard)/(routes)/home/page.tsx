@@ -4,6 +4,13 @@ import RecentSection from "@/components/RecentSection";
 import ShareSection from "@/components/ShareSection";
 import TopSection from "@/components/TopSection";
 import Trending from "@/components/Trending";
+import { Metadata } from "next";
+
+// Meta Data for home Page
+export const metadata: Metadata = {
+  title: "Naruto Gaming | Home",
+  description: "Watch all your favourite anime for free on Naruto Gaming",
+};
 
 const dataForHome = async () => {
   const res = await fetch("http://localhost:3000/api/home", {
