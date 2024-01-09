@@ -1,4 +1,4 @@
-import Info from "@/components/Info";
+// import Info from "@/components/Info";
 type Props = {
   params: {
     id: string;
@@ -6,28 +6,29 @@ type Props = {
 };
 
 const anime = async (props: Props) => {
-  const { id } = props.params;
+  // const { id } = props.params;
 
-  const dataforAnimeInfo = async (id: string) => {
-    const res = await fetch(`http://localhost:3000/api/animeInfo`, {
-      cache: "no-cache",
-      method: "POST",
-      body: JSON.stringify({ id }),
-    });
-    const data = await res.json();
+  // const dataforAnimeInfo = async (id: string) => {
+  //   const res = await fetch(`http://localhost:3000/api/animeInfo`, {
+  //     cache: "no-cache",
+  //     method: "POST",
+  //     body: JSON.stringify({ id }),
+  //   });
+  //   const data = await res.json();
 
-    if (res.ok) {
-      return data;
-    } else {
-      throw new Error("Error while Fetching Data...");
-    }
-  };
+  //   if (res.ok) {
+  //     return data;
+  //   } else {
+  //     throw new Error("Error while Fetching Data...");
+  //   }
+  // };
 
-  const data = await dataforAnimeInfo(id);
+  // const data = await dataforAnimeInfo(id);
 
   return (
     <div>
-      <Info animeData={data} />
+      {/* <Info animeData={data} /> */}
+      Hello
     </div>
   );
 };

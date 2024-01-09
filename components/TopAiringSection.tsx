@@ -26,22 +26,22 @@ const TopAiringSection: FC<TopSectionProps> = ({ topAiringAnimes }) => {
       <AnimeList
         data={TopAiringData}
         header={"Top Airing"}
-        className=" xl:basis-1/4 lg:basis-1/2"
+        className=" xl:basis-1/4 md:basis-1/2 basis-full"
       />
       <AnimeList
         data={TopAiringData2}
         header={"Most Popular"}
-        className=" xl:basis-1/4 lg:basis-1/2"
+        className=" xl:basis-1/4 md:basis-1/2 basis-full"
       />
       <AnimeList
         data={TopAiringData3}
         header={"Most Favorite"}
-        className=" xl:basis-1/4 lg:basis-1/2"
+        className=" xl:basis-1/4 md:basis-1/2 basis-full"
       />
       <AnimeList
         data={TopAiringData4}
         header={"Latest Completed"}
-        className=" xl:basis-1/4 lg:basis-1/2"
+        className=" xl:basis-1/4 md:basis-1/2 basis-full"
       />
     </div>
   );

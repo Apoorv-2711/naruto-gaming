@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   const { id } = await request.json();
   const getAnimeInfo = await fetch(
-    `http://localhost:4000/anime/info?id=${id}`,
+    `http://localhost:3000/anime/info?id=${id}`,
     {
       cache: "no-cache",
     }
