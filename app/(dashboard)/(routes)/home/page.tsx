@@ -42,7 +42,7 @@ const home = async () => {
       <ShareSection />
       {/* <RecentSection /> */}
       <CommentSection />
-      <TopAiringSection topAiringAnimes={topAiringAnimes} />
+      {/* <TopAiringSection topAiringAnimes={topAiringAnimes} /> */}
     </div>
   );
 };
