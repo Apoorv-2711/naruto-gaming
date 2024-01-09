@@ -3,15 +3,10 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { ArrowRightIcon, Dot, Mic, Subtitles } from "lucide-react";
 import { Separator } from "./ui/separator";
+import { home } from "@/types/types";
 
 type AnimeListPorps = {
-  data: {
-    id: string;
-    name: string;
-    jname: string;
-    poster: string;
-    otherInfo: string[];
-  }[];
+  data: home["topAiringAnimes"];
   header: string;
   className?: string;
 };

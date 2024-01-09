@@ -73,6 +73,7 @@ export type home = {
       name: string;
       jname: string;
       poster: string;
+      otherInfo: string[];
     }
   ];
   topUpcomingAnimes: [
