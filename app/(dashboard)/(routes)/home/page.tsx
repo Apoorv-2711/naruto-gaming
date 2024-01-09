@@ -4,6 +4,7 @@ import RecentSection from "@/components/RecentSection";
 import ShareSection from "@/components/ShareSection";
 import TopAiringSection from "@/components/TopAiringSection";
 import Trending from "@/components/Trending";
+import scrapeHomePage from "@/parser/homePage";
 import { Metadata } from "next";
 
 // Meta Data for home Page
@@ -12,25 +13,27 @@ export const metadata: Metadata = {
   description: "Watch all your favourite anime for free on Naruto Gaming",
 };
 
-const dataForHome = async () => {
-  const res = await fetch("http://localhost:3000/api/home", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    cache: "no-cache",
-  });
-  const data = await res.json();
+// const dataForHome = async () => {
+//   const res = await fetch("/api/home", {
+//     method: "GET",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     cache: "no-cache",
+//   });
+//   const data = await res.json();
 
-  if (res.ok) {
-    return data;
-  } else {
-    throw new Error("Error while Fetching carousel Data..");
-  }
-};
+//   if (res.ok) {
+//     return data;
+//   } else {
+//     throw new Error("Error while Fetching carousel Data..");
+//   }
+// };
 
 const home = async () => {
-  const data = await dataForHome();
+  // const data = await dataForHome();
+  const data = await scrapeHomePage();
+  // console.log(data);
   const carouselData = data.spotlightAnimes;
   const trendingData = data.trendingAnimes;
   const topAiringAnimes = data.topAiringAnimes;
