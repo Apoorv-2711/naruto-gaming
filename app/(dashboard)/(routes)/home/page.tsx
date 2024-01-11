@@ -31,9 +31,7 @@ export const metadata: Metadata = {
 // };
 
 const home = async () => {
-  // const data = await dataForHome();
   const data = await scrapeHomePage();
-  // console.log(data);
   const carouselData = data.spotlightAnimes;
   const trendingData = data.trendingAnimes;
   const topAiringAnimes = data.topAiringAnimes;

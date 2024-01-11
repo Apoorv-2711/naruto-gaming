@@ -36,10 +36,11 @@ async function scrapeHomePage(): Promise<ScrapedHomePage | HttpError> {
       "User-Agent": USER_AGENT_HEADER,
       "Accept-Encoding": ACCEPT_ENCODING_HEADER,
       Accept: ACCEPT_HEADER,
+      caches: "no-cache",
     };
     const mainPage = await axios.get(SRC_HOME_URL as string, {
       headers,
-    });
+    },);
 
     const $: CheerioAPI = load(mainPage.data);
 
