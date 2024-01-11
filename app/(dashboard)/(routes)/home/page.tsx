@@ -7,28 +7,10 @@ import Trending from "@/components/Trending";
 import scrapeHomePage from "@/parser/homePage";
 import { Metadata } from "next";
 
-// Meta Data for home Page
 export const metadata: Metadata = {
   title: "Naruto Gaming | Home",
   description: "Watch all your favourite anime for free on Naruto Gaming",
 };
-
-// const dataForHome = async () => {
-//   const res = await fetch("/api/home", {
-//     method: "GET",
-//     headers: {
-//       "Content-Type": "application/json",
-//     },
-//     cache: "no-cache",
-//   });
-//   const data = await res.json();
-
-//   if (res.ok) {
-//     return data;
-//   } else {
-//     throw new Error("Error while Fetching carousel Data..");
-//   }
-// };
 
 const home = async () => {
   const data = await scrapeHomePage();

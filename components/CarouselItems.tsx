@@ -46,7 +46,7 @@ export default function CarouselItems({ carouselData }: Props) {
             return (
               <CarouselItem key={idx + "__VK__APOORV__NG"}>
                 <div
-                  className={`object-cover bg-gray-800 min-w-full h-[500px] text-black filter brightness-75`}
+                  className={`object-cover  min-w-full sm:h-[500px] text-black filter brightness-75 h-[350px]  `}
                   style={{
                     backgroundImage: `url(${item.poster})`,
                     backgroundSize: "cover",
@@ -55,15 +55,15 @@ export default function CarouselItems({ carouselData }: Props) {
                     boxShadow: "inset 0 0 0 1000px rgba(0,0,0,.5)",
                   }}
                 >
-                  <div className="text-white px-6 py-8 flex justify-start items-end h-full filter brightness-100">
-                    <div className="mb-4">
-                      <h2 className="text-lg font-bold">
+                  <div className="text-white px-6 py-8 pb-3 flex justify-start items-end h-full filter brightness-100">
+                    <div className="">
+                      <h2 className="text-lg font-semibold ">
                         #{item.rank} Spotlight
                       </h2>
-                      <h1 className="xs:text-2xl sm:text-3xl md:text-4xl     font-bold mt-2">
+                      <h1 className="xs:text-2xl sm:text-3xl md:text-4xl w-full font-bold sm:mt-1 mb-2">
                         {item.name}
                       </h1>
-                      <div className="flex items-center space-x-3 my-4">
+                      <div className="md:flex hidden items-center space-x-3 my-4">
                         <Badge
                           variant="secondary"
                           className="flex items-center justify-center"
@@ -124,7 +124,7 @@ export default function CarouselItems({ carouselData }: Props) {
                       <div className="flex space-x-4">
                         <Button
                           variant="default"
-                          className="flex justify-center items-center gap-x-1"
+                          className="flex justify-center items-center gap-x-1 bg-[#f97316] hover:bg-[#f94f31] transition-colors duration-300 ease-out"
                         >
                           <PlayCircleIcon size={15} />
                           <span>Watch Now</span>
@@ -146,6 +146,8 @@ export default function CarouselItems({ carouselData }: Props) {
             );
           })}
         </CarouselContent>
+        <div className="sm:block hidden">
+
         <CarouselNext
           className={
             "absolute right-5 top-[400px] transform -translate-y-1/2 rounded-lg bg-white/70 hover:bg-white/80 transition-colors duration-300 ease-out"
@@ -156,6 +158,7 @@ export default function CarouselItems({ carouselData }: Props) {
             "absolute right-5 top-[440px]  transform -translate-y-1/2  rounded-lg bg-white/70 hover:bg-white/80 transition-colors duration-300 ease-out -left-100"
           }
         />
+        </div>
       </Carousel>
     </>
   );

@@ -119,11 +119,14 @@ export type animeInfo = {
       };
     };
     moreInfo: {
+      japanese: string;
+      synonyms: string;
       aired: string;
       genres: string[];
       status: string;
       studios: string;
       duration: string;
+      malscore: string;
     };
   };
   mostPopularAnimes: [

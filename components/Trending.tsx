@@ -17,18 +17,16 @@ type TrendingProps = {
 
 const Trending: FC<TrendingProps> = ({ trendingData }) => {
   return (
-    <div className="mx-auto">
-      <h3 className="text-2xl font-bold mt-12  ml-4 text-white">
-        Trending
-      </h3>
-      <div className="flex overflow-x-auto p-6 pr-14 items-center justify-center ">
+    <div className="h-full mx-auto">
+      <h3 className="text-2xl font-bold mt-12  ml-4 text-[#f97316]">Trending</h3>
+      <div className="flex overflow-x-auto p-6 sm:pr-14 items-center justify-center ">
         <Carousel className="w-full">
-          <CarouselContent className="">
+          <CarouselContent className="sm:space-x-4">
             {trendingData.map((item, idx) => {
               return (
                 <CarouselItem
                   key={idx + "__VK__APOORV__NG"}
-                  className=" md:basis-1/3 lg:basis-1/4 xl:basis-1/6 sm:basis-1/3 basis-1/2 flex flex-row max-h-60  justify-center space-x-1 hover:scale-105 transform transition-all duration-500 ease-in-out"
+                  className="  basis-auto flex flex-row max-h-60  justify-center sm:space-x-1 hover:scale-105 transform transition-all duration-500 ease-in-out"
                   onClick={() => {
                     window.location.href = `${item.id}`;
                   }}
@@ -65,8 +63,11 @@ const Trending: FC<TrendingProps> = ({ trendingData }) => {
               );
             })}
           </CarouselContent>
+          <div className="sm:block hidden">
+
           <CarouselNext className="border-none bg-gray-400 top-1/4 py-12 rounded-lg" />
           <CarouselPrevious className="border-none bg-gray-400 top-3/4 py-12 rounded-lg" />
+          </div>
         </Carousel>
       </div>
     </div>

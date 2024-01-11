@@ -8,18 +8,9 @@ type TopSectionProps = {
 
 const TopAiringSection: FC<TopSectionProps> = ({ topAiringAnimes }) => {
   const TopAiringData = topAiringAnimes.slice(0, 5) as home["topAiringAnimes"];
-  const TopAiringData2 = topAiringAnimes.slice(
-    5,
-    10
-  ) as home["topAiringAnimes"];
-  const TopAiringData3 = topAiringAnimes.slice(
-    10,
-    15
-  ) as home["topAiringAnimes"];
-  const TopAiringData4 = topAiringAnimes.slice(
-    15,
-    20
-  ) as home["topAiringAnimes"];
+  const MostPopularData = topAiringAnimes.slice(5,10) as home["topAiringAnimes"];
+  const MostFavoriteData = topAiringAnimes.slice(10,15) as home["topAiringAnimes"];
+  const LatestCompletedData = topAiringAnimes.slice(15,20) as home["topAiringAnimes"];
 
   return (
     <div className="text-white flex flex-row flex-wrap justify-between p-4 items-center">
@@ -29,17 +20,17 @@ const TopAiringSection: FC<TopSectionProps> = ({ topAiringAnimes }) => {
         className=" xl:basis-1/4 md:basis-1/2 basis-full"
       />
       <AnimeList
-        data={TopAiringData2}
+        data={MostPopularData}
         header={"Most Popular"}
         className=" xl:basis-1/4 md:basis-1/2 basis-full"
       />
       <AnimeList
-        data={TopAiringData3}
+        data={MostFavoriteData}
         header={"Most Favorite"}
         className=" xl:basis-1/4 md:basis-1/2 basis-full"
       />
       <AnimeList
-        data={TopAiringData4}
+        data={LatestCompletedData}
         header={"Latest Completed"}
         className=" xl:basis-1/4 md:basis-1/2 basis-full"
       />

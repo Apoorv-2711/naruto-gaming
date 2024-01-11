@@ -4,6 +4,13 @@ import Link from "next/link";
 import { ArrowRightIcon, Dot, Mic, Subtitles } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { home } from "@/types/types";
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import Image from "next/image";
+import InsideHoverCard from "./InsideHoverCard";
 
 type AnimeListPorps = {
   data: home["topAiringAnimes"];
@@ -19,17 +26,24 @@ const AnimeList: React.FC<AnimeListPorps> = ({ data, header, className }) => {
         {data.map((item) => (
           <>
             <div className="flex flex-row justify-start space-x-3">
-              <img
-                alt={item.name}
-                className="w-16 h-20 rounded-md mb-2 "
-                height="1080"
-                src={item.poster}
-                style={{
-                  aspectRatio: "75/75",
-                  objectFit: "cover",
-                }}
-                width="1080"
-              />
+              <HoverCard>
+                <HoverCardTrigger asChild>
+                  <Image
+                    alt={item.name}
+                    className="w-16 h-20 rounded-md mb-2 "
+                    height="1080"
+                    src={item.poster}
+                    style={{
+                      aspectRatio: "75/75",
+                      objectFit: "cover",
+                    }}
+                    width="1080"
+                  />
+                </HoverCardTrigger>
+                <HoverCardContent asChild>
+                <InsideHoverCard id={item?.id}/>
+                </HoverCardContent>
+              </HoverCard>
               <div className="flex flex-col items-start space-y-2">
                 <h3 className="font-semibold">{item.name}</h3>
                 <div className="flex flex-row gap-x-[1px] items-center justify-center">
@@ -67,7 +81,7 @@ const AnimeList: React.FC<AnimeListPorps> = ({ data, header, className }) => {
                 </div>
               </div>
             </div>
-            <Separator />
+            <Separator className=" bg-gray-800 h-[0.5px] rounded-full" />
           </>
         ))}
       </div>
