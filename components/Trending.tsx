@@ -9,7 +9,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
-import { InsideHoverCard } from "./InsideHoverCard";
 
 type TrendingProps = {
   trendingData: home["trendingAnimes"];

@@ -15,7 +15,6 @@ const InsideHoverCard: FC<InsideHoverCardProps> = ({ id }) => {
   const getData = async () => {
     const res = await fetch(`https://api-aniwatch.onrender.com/anime/info?id=${id}`);
     const data = await res.json();
-    console.log(data);
     return data as animeInfo;
   };
 
