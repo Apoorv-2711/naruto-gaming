@@ -3,9 +3,10 @@ import { CardTitle, CardHeader, CardContent, Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Loader2, PlayCircle } from "lucide-react";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { animeInfo } from "@/types/types";
 import { useQuery } from "@tanstack/react-query";
+import Balancer from "react-wrap-balancer";
 
 type InsideHoverCardProps = {
   id: string;
@@ -13,7 +14,7 @@ type InsideHoverCardProps = {
 
 const InsideHoverCard: FC<InsideHoverCardProps> = ({ id }) => {
   const getData = async () => {
-    const res = await fetch(`https://api-aniwatch.onrender.com/anime/info?id=${id}`);
+    const res = await fetch(`http://localhost:4000/anime/info?id=${id}`);
     const data = await res.json();
     return data as animeInfo;
   };
@@ -26,7 +27,7 @@ const InsideHoverCard: FC<InsideHoverCardProps> = ({ id }) => {
 
   if (isLoading) {
     return (
-      <Card className="w-[350px] bg-[#49494929] text-white rounded-lg border-none bg-opacity-60 backdrop-blur-lg">
+      <Card className="bg-transparent dark border-none w-full">
         <div className="flex flex-row justify-center items-center h-full p-4">
           <Loader2 className="animate-spin text-[#f97316]" size={40} />
         </div>
@@ -35,7 +36,7 @@ const InsideHoverCard: FC<InsideHoverCardProps> = ({ id }) => {
   }
 
   return (
-    <Card className="w-[350px] bg-[#49494929] text-white rounded-lg border-none bg-opacity-60 backdrop-blur-lg">
+    <Card className="bg-transparent dark border-none w-full">
       <CardHeader>
         <CardTitle className="text-base font-bold">
           {data?.anime.info.name}
@@ -61,7 +62,7 @@ const InsideHoverCard: FC<InsideHoverCardProps> = ({ id }) => {
             data?.anime?.info?.description?.length > 120 &&
             "..."}
         </p>
-        <p className="text-xs my-4 whitespace-break-spaces">
+        <p className="text-xs my-4 w-full">
           {data?.anime.moreInfo.japanese &&
             `Japanese: ${data?.anime.moreInfo.japanese}`}
           <br />
@@ -73,6 +74,7 @@ const InsideHoverCard: FC<InsideHoverCardProps> = ({ id }) => {
           {data?.anime.moreInfo.status &&
             `Status: ${data?.anime.moreInfo.status}`}
           <br />
+
           {data?.anime.moreInfo.genres &&
             `Genres: ${data?.anime.moreInfo.genres}`}
         </p>

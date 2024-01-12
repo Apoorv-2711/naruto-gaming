@@ -116,6 +116,7 @@ export default function CarouselItems({ carouselData }: Props) {
                         </div>
                       </div>
                       <p className="hidden md:block max-w-2xl mb-6">
+                        
                         {item.description
                           .replace(/(<([^>]+)>)/gi, "")
                           .substring(0, 180)}

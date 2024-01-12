@@ -23,9 +23,10 @@ const home = async () => {
       <CarouselItems carouselData={carouselData} />
       <Trending trendingData={trendingData} />
       <ShareSection />
-      {/* <RecentSection /> */}
+      
       <CommentSection />
       <TopAiringSection topAiringAnimes={topAiringAnimes} />
+      <RecentSection />
     </div>
   );
 };

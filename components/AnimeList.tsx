@@ -26,7 +26,7 @@ const AnimeList: React.FC<AnimeListPorps> = ({ data, header, className }) => {
         {data.map((item) => (
           <>
             <div className="flex flex-row justify-start space-x-3">
-              <HoverCard>
+              <HoverCard openDelay={0} closeDelay={0} >
                 <HoverCardTrigger asChild>
                   <Image
                     alt={item.name}
@@ -39,8 +39,8 @@ const AnimeList: React.FC<AnimeListPorps> = ({ data, header, className }) => {
                     }}
                     width="1080"
                   />
-                </HoverCardTrigger>
-                <HoverCardContent asChild>
+                </HoverCardTrigger >
+                <HoverCardContent className=" dark min-w-[350px] w-min  bg-[#49494929] text-white rounded-lg border-none bg-opacity-60 backdrop-blur-lg p-0 m-0">
                 <InsideHoverCard id={item?.id}/>
                 </HoverCardContent>
               </HoverCard>
