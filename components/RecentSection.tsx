@@ -5,11 +5,12 @@ import LatestEpisodes from "./LatestEpisodes";
 const RecentSection = async () => {
   const data = await scrapeHomePage();
   const latestEpisodeData = data.latestEpisodeAnimes;
+  const genresData = data.genres;
 
   return (
     <div className="flex xl:flex-row flex-col">
       <LatestEpisodes latestEpisodeData={latestEpisodeData} />
-      <Genres />
+      <Genres genresData={genresData} />
     </div>
   );
 };

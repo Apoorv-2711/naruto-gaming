@@ -39,7 +39,7 @@ export const extractAnimes = (
 
       const animeDuration =
         $(el)
-          .find(".film-detail .fd-infor .fdi-item .fdi-duration")
+          .find(".film-detail .fd-infor .fdi-item.fdi-duration")
           ?.text()
           ?.trim() || null;
 

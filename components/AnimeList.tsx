@@ -26,7 +26,7 @@ const AnimeList: React.FC<AnimeListPorps> = ({ data, header, className }) => {
         {data.map((item) => (
           <>
             <div className="flex flex-row justify-start space-x-3">
-              <HoverCard openDelay={0} closeDelay={0} >
+              <HoverCard openDelay={0} closeDelay={0}>
                 <HoverCardTrigger asChild>
                   <Image
                     alt={item.name}
@@ -39,9 +39,9 @@ const AnimeList: React.FC<AnimeListPorps> = ({ data, header, className }) => {
                     }}
                     width="1080"
                   />
-                </HoverCardTrigger >
+                </HoverCardTrigger>
                 <HoverCardContent className=" dark min-w-[350px] w-min  bg-[#49494929] text-white rounded-lg border-none bg-opacity-60 backdrop-blur-lg p-0 m-0">
-                <InsideHoverCard id={item?.id}/>
+                  <InsideHoverCard id={item?.id} />
                 </HoverCardContent>
               </HoverCard>
               <div className="flex flex-col items-start space-y-2">
@@ -52,31 +52,30 @@ const AnimeList: React.FC<AnimeListPorps> = ({ data, header, className }) => {
                     className="flex flex-row rounded-r-none"
                   >
                     <Subtitles size={15} className="mr-1" />
-                    <span>{/* {item.episodes.sub} */}22</span>
+                    <span>{item.otherInfo[0]}</span>
                   </Badge>
-                  {/* {item.episodes.dub && ( */}
-                  <Badge
-                    variant="secondary"
-                    className="flex flex-row rounded-none"
-                  >
-                    <Mic size={15} className="mr-1" />
-                    <span>{/* {item.episodes.dub} */}22</span>
-                  </Badge>
-                  {/* )} */}
+                  {item.otherInfo[1] && (
+                    <Badge
+                      variant="secondary"
+                      className="flex flex-row rounded-none"
+                    >
+                      <Mic size={15} className="mr-1" />
+                      <span>{item.otherInfo[1]}</span>
+                    </Badge>
+                  )}
                   <Badge
                     variant="default"
                     className="flex flex-row rounded-l-none"
                   >
                     <span>
-                      {/* {item.episodes.sub > item.episodes.dub
-                      ? item.episodes.sub
-                      : item.episodes.dub} */}
-                      22
+                      {item.otherInfo[0] > item.otherInfo[1]
+                        ? item.otherInfo[0]
+                        : item.otherInfo[1]}
                     </span>
                   </Badge>
                   <Dot className="m-0 p-0 text-gray-500" />
                   <span className="text-gray-500 font-semibold text-sm p-0 m-0">
-                    {item.otherInfo[0]}
+                    {item.otherInfo[item.otherInfo.length - 1]}
                   </span>
                 </div>
               </div>

@@ -40,7 +40,7 @@ async function scrapeHomePage(): Promise<ScrapedHomePage | HttpError> {
     };
     const mainPage = await axios.get(SRC_HOME_URL as string, {
       headers,
-    },);
+    });
 
     const $: CheerioAPI = load(mainPage.data);
 
@@ -168,10 +168,10 @@ async function scrapeHomePage(): Promise<ScrapedHomePage | HttpError> {
       "#anime-featured .row div:nth-of-type(1) .anif-block-ul ul li";
     $(topAiringSelector).each((i, el) => {
       const otherInfo = $(el)
-        .find(".fd-infor .fdi-item .tick .tick-sub .tick-dub .tick-item")
-        .map((i, el) => {$(el).text().trim()
-          console.log(el,"el")
-        })
+        .find(".fd-infor .tick")
+        .map((i, el) => $(el).text().trim()
+        .replace(/\s+/g, " ").split(" ")
+        )
         .get();
 
       res.topAiringAnimes.push({
