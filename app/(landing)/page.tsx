@@ -1,4 +1,5 @@
 import Particles from "@/components/Particles";
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import React from "react";
 
@@ -13,9 +14,9 @@ const LandingPage = () => {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm duration-500 text-zinc-500 hover:text-zinc-300"
+              className=""
             >
-              {item.name}
+              <Button variant={"link"} className="text-sm duration-500 text-zinc-500 hover:text-zinc-300 p-0">{item.name}</Button>
             </Link>
           ))}
         </ul>
@@ -33,28 +34,28 @@ const LandingPage = () => {
           still in development, and We are making progress on it every day. If you want to contribute, please contact us on{" "}
           <Link
             href="https://twitter.com/Apoorv2711"
-            className="text-zinc-300 hover:text-zinc-200"
             target="_blank"
           >
-            X/Twitter
+            <Button variant={"link"} className="text-zinc-300 animate-fade-in hover:text-zinc-200 p-0">Twitter</Button>
           </Link>
         </h2>
-        <h2 className="text-sm text-zinc-500">
+        <h2 className="text-sm animate-fade-in text-zinc-500 absolute bottom-10 left-0 right-0 mx-auto ">
           Developed By:{" "}
           <Link
             href="https://github.com/Apoorv-2711"
-            className="text-zinc-300 hover:text-zinc-200"
+            className=""
             target="_blank"
           >
-            Apoorv Jain
+            <Button variant={"link"} className="text-zinc-300 hover:text-zinc-200 p-0">Apoorv Jain</Button>
           </Link>
+          {" "}
+            &amp;{" "}
           <Link
             href="https://github.com/Codefreak69"
             className="text-zinc-300 hover:text-zinc-200"
             target="_blank"
           >
-            {" "}
-            &amp; Vikash Kumar
+            <Button variant={"link"} className="text-zinc-300 hover:text-zinc-200 p-0">Vikash Kumar</Button>
           </Link>
         </h2>
       </div>
