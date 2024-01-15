@@ -27,9 +27,9 @@ const Genres: React.FC<GenresProps> = ({ genresData }) => {
 
   return (
     <div className="xl:w-1/4 w-full px-4 h-fit">
-      <h3 className="text-2xl  font-bold mt-12 mb-4 text-red-500">Genres</h3>
+      <h3 className="text-2xl  font-bold mt-12 mb-4 text-[#f97316]">Genres</h3>
       <div className=" bg-[#252424]  p-4">
-        <div className="columns-3 ">
+        <div className="grid  grid-cols-3">
           {data.map((genre) => (
             <h2
               className="  text-white rounded-md w-full hover:bg-white/10 p-3 truncate"

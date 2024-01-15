@@ -12,10 +12,10 @@ type LatestEpisodesProps = {
 const LatestEpisodes: FC<LatestEpisodesProps> = ({ latestEpisodeData }) => {
   return (
     <div className="xl:w-3/4 w-full px-4">
-      <h3 className="text-2xl  font-bold mt-12 mb-4 text-red-500">
+      <h3 className="text-2xl  font-bold mt-12 mb-4 text-[#f97316]">
         Latest Episode
       </h3>
-      <div className="columns-3 md:columns-4 xl:columns-6 ">
+      <div className="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-x-3 ">
         {latestEpisodeData.map((data) => (
           <div
             className="group mb-5 w-full space-y-3 after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
