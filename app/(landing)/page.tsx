@@ -29,8 +29,8 @@ const LandingPage = () => {
       <div className="hidden w-screen h-px animate-glow md:block animate-fade-right bg-gradient-to-r from-zinc-300/0 via-zinc-300/50 to-zinc-300/0" />
       <div className="my-16 text-center animate-fade-in z-10">
         <h2 className="text-sm text-zinc-500 ">
-          I&apos;m building a anime streaming website called Naruto Gaming. It&apos;s
-          still in development, and I&apos;m working on it every day. If you want to contribute, please contact me on{" "}
+          We are building a anime streaming website called Naruto Gaming. It&apos;s
+          still in development, and We are making progress on it every day. If you want to contribute, please contact us on{" "}
           <Link
             href="https://twitter.com/Apoorv2711"
             className="text-zinc-300 hover:text-zinc-200"
