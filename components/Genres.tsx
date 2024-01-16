@@ -26,7 +26,7 @@ const Genres: React.FC<GenresProps> = ({ genresData }) => {
   }, [show, genresData]);
 
   return (
-    <div className="xl:w-1/4 w-full px-4 h-fit">
+    <>
       <h3 className="text-2xl  font-bold mt-12 mb-4 text-[#f97316]">Genres</h3>
       <div className=" bg-[#252424]  p-4">
         <div className="grid  grid-cols-3">
@@ -51,7 +51,7 @@ const Genres: React.FC<GenresProps> = ({ genresData }) => {
           </span>
         </Button>
       </div>
-    </div>
+    </>
   );
 };
 

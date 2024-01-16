@@ -1,22 +1,24 @@
 import { home } from "@/types/types";
-import { Dot } from "lucide-react";
-import Image from "next/image";
 import { FC } from "react";
-import InsideHoverCard from "./InsideHoverCard";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
+import Image from "next/image";
+import InsideHoverCard from "./InsideHoverCard";
+import { Dot } from "lucide-react";
 
-type LatestEpisodesProps = {
-  latestEpisodeData: home["latestEpisodeAnimes"];
+type NewOnNarutoWatchProps = {
+  newOnNarutoWatch: home["latestEpisodeAnimes"];
 };
 
-const LatestEpisodes: FC<LatestEpisodesProps> = ({ latestEpisodeData }) => {
+const NewOnNarutoWatch: FC<NewOnNarutoWatchProps> = ({
+  newOnNarutoWatch,
+}) => {
   return (
     <>
       <h3 className="text-2xl  font-bold mt-12 mb-4 text-[#f97316]">
-        Latest Episode
+        New on NarutoWatch
       </h3>
       <div className="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-x-3 ">
-        {latestEpisodeData.map((data) => (
+        {newOnNarutoWatch.map((data) => (
           <div
             className="group mb-5 w-full space-y-3 after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
             key={data.id}
@@ -46,12 +48,15 @@ const LatestEpisodes: FC<LatestEpisodesProps> = ({ latestEpisodeData }) => {
               </HoverCardContent>
             </HoverCard>
             <div className="flex flex-col space-y-2 items-start text-white overflow-hidden">
-              <div className=" flex flex-row hover:text-[#f97316] cursor-pointer" style={{
-                maxWidth: "100%",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-              }}>
+              <div
+                className=" flex flex-row hover:text-[#f97316] cursor-pointer"
+                style={{
+                  maxWidth: "100%",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                }}
+              >
                 <h3 className="text-sm font-bold">{data.name}</h3>
               </div>
               <p className="text-sm text-gray-300">
@@ -67,4 +72,4 @@ const LatestEpisodes: FC<LatestEpisodesProps> = ({ latestEpisodeData }) => {
   );
 };
 
-export default LatestEpisodes;
+export default NewOnNarutoWatch;
