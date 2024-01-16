@@ -57,8 +57,8 @@ export default function Particles({
 		if (canvasRef.current) {
 			const rect = canvasRef.current.getBoundingClientRect();
 			const { w, h } = canvasSize.current;
-			const x = mousePosition.x - rect.left - w / 2;
-			const y = mousePosition.y - rect.top - h / 2;
+			const x = mousePosition.x! - rect.left - w / 2;
+			const y = mousePosition.y! - rect.top - h / 2;
 			const inside = x < w / 2 && x > -w / 2 && y < h / 2 && y > -h / 2;
 			if (inside) {
 				mouse.current.x = x;
