@@ -7,6 +7,7 @@ import { FC } from "react";
 import { animeInfo } from "@/types/types";
 import { useQuery } from "@tanstack/react-query";
 import Balancer from "react-wrap-balancer";
+import scrapeAnimeAboutInfo from "@/parser/animeAboutInfoPage";
 
 type InsideHoverCardProps = {
   id: string;
@@ -14,9 +15,10 @@ type InsideHoverCardProps = {
 
 const InsideHoverCard: FC<InsideHoverCardProps> = ({ id }) => {
   const getData = async () => {
-    const res = await fetch(`https://api-aniwatch.onrender.com/anime/info?id=${id}`);
-    const data = await res.json();
-    return data as animeInfo;
+    // const res = await fetch(`https://api-aniwatch.onrender.com/anime/info?id=${id}`);
+    const data = await scrapeAnimeAboutInfo(id);
+    // const data = await res.json();
+    return data;
   };
 
   const { data, isLoading } = useQuery({
