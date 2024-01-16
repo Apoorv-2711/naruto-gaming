@@ -66,10 +66,7 @@ async function scrapeAnimeAboutInfo(
         ?.pop() || null;
     // for getting Japanes name search for data-janame attr (data-janame="name") ===> FOR Futuure USE (VK)
     const animeInfoName =
-      $(selector)
-        ?.find(".anisc-detail .film-name .dynamic-name")
-        ?.text()
-        ?.trim() || null;
+      $(selector)?.find(".anisc-detail .film-name ")?.text()?.trim() || null;
 
     const animeInfoPoster =
       $(selector)?.find(".film-poster .film-poster-img")?.attr("src")?.trim() ||

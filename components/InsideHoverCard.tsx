@@ -4,10 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Loader2, PlayCircle } from "lucide-react";
 import { FC } from "react";
-import { animeInfo } from "@/types/types";
+
 import { useQuery } from "@tanstack/react-query";
 import Balancer from "react-wrap-balancer";
-import scrapeAnimeAboutInfo from "@/parser/animeAboutInfoPage";
 
 type InsideHoverCardProps = {
   id: string;
@@ -15,9 +14,14 @@ type InsideHoverCardProps = {
 
 const InsideHoverCard: FC<InsideHoverCardProps> = ({ id }) => {
   const getData = async () => {
-    // const res = await fetch(`https://api-aniwatch.onrender.com/anime/info?id=${id}`);
-    const data = await scrapeAnimeAboutInfo(id);
-    // const data = await res.json();
+    const res = await fetch(`/api/anime/info`, {
+      headers: {
+        "anime-id": id,
+      },
+      cache: "no-cache",
+    });
+    const data = await res.json();
+
     return data;
   };
 
