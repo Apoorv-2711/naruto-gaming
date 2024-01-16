@@ -13,7 +13,7 @@ const words = [
       "z-10 text-4xl duration-1000 text-white cursor-default  animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap ",
   },
   {
-    text: "Gaming",
+    text: "GaminG",
     className:
       "z-10 text-4xl duration-1000 text-white cursor-default  animate-title font-display sm:text-6xl md:text-9xl whitespace-nowrap ",
   },
