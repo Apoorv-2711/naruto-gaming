@@ -2,8 +2,10 @@
 import { home } from "@/types/types";
 import React, { FC, useState } from "react";
 import { Button } from "./ui/button";
-import { EyeIcon, HeartIcon } from "lucide-react";
+import { Dot, EyeIcon, HeartIcon, Mic, Subtitles } from "lucide-react";
 import { Separator } from "./ui/separator";
+import Image from "next/image";
+import { Badge } from "./ui/badge";
 
 type Top10Props = {
   top10Data: home["top10Animes"];
@@ -20,7 +22,7 @@ const Top10: FC<Top10Props> = ({ top10Data }) => {
 
   return (
     <>
-      <div className="mt-12 mb-4 flex flex-row justify-between items-center">
+      <div className="mt-12 mb-4 flex flex-row justify-between items-center cursor-default">
         <h3 className="text-2xl  font-bold  text-[#f97316]">Top 10</h3>
         <div className={"flex flex-row items-center text-white"}>
           <Button
@@ -67,34 +69,67 @@ const Top10: FC<Top10Props> = ({ top10Data }) => {
           </Button>
         </div>
       </div>
-      <div className=" bg-[#252424]  p-4">
-        <div className="grid grid-cols-1 gap-y-4">
+      <div className=" bg-[#171717] p-4 cursor-default rounded-sm">
+        <div className="flex flex-col gap-y-4 ">
           {data.map((anime, idx) => (
-            <div className="flex items-center gap-x-2">
-              <div className="text-2xl font-bold pr-2 text-white flex flex-col">
-                {idx < 9 ? `0${idx + 1}` : idx + 1}
-                <Separator className="h-[3px] mt-1" />
-              </div>
-              <img
-                alt="One Piece"
-                className="w-24 h-24 mr-2"
-                height="100"
-                src={anime.poster}
-                style={{
-                  aspectRatio: "100/100",
-                  objectFit: "cover",
-                }}
-                width="100"
-              />
-              <div>
-                <div className="font-bold">One Piece</div>
-                <div className="flex items-center">
-                  <EyeIcon className="text-gray-400" />
-                  <span className="text-gray-400 mx-1">1090</span>
-                  <HeartIcon className="text-red-500" />
-                  <span className="text-red-500 mx-1">1048</span>
+            <div className={`flex flex-col w-full ${
+                idx > 2 ? "hover:text-white text-white/30" : "text-white"
+            }`} key={anime.id}>
+              <div className="flex flex-row items-center gap-x-2 ">
+                <div className="text-2xl font-bold pr-2 w-10 flex flex-col">
+                  {idx < 9 ? `0${idx + 1}` : idx + 1}
+                  <Separator
+                    className={idx < 3 ? "bg-[#f97316] h-[2px]" : "hidden"}
+                  />
+                </div>
+                <div className="flex flex-row justify-start space-x-3 w-full">
+                  <Image
+                    alt={anime.name}
+                    className="w-16 h-20 rounded-md mb-2 "
+                    height="1080"
+                    src={anime.poster}
+                    style={{
+                      aspectRatio: "75/75",
+                      objectFit: "cover",
+                    }}
+                    width="1080"
+                  />
+                  <div className="flex flex-col items-start space-y-2 w-full text-white">
+                    <h3 className="font-semibold cursor-pointer hover:text-[#f97316]">
+                      {anime.name}
+                    </h3>
+                    <div className="flex flex-row gap-x-[1px] items-center justify-center">
+                      <Badge
+                        variant="secondary"
+                        className="flex flex-row rounded-r-none px-1"
+                      >
+                        <Subtitles size={15} className="mr-1" />
+                        <span>{anime.episodes.sub}</span>
+                      </Badge>
+                      {anime.episodes.dub && (
+                        <Badge
+                          variant="secondary"
+                          className="flex flex-row rounded-none px-1"
+                        >
+                          <Mic size={15} className="mr-1" />
+                          <span>{anime.episodes.dub}</span>
+                        </Badge>
+                      )}
+                      <Badge
+                        variant="default"
+                        className="flex flex-row rounded-l-none px-1"
+                      >
+                        <span>
+                          {anime.episodes.sub > anime.episodes.dub
+                            ? anime.episodes.sub
+                            : anime.episodes.dub}
+                        </span>
+                      </Badge>
+                    </div>
+                  </div>
                 </div>
               </div>
+              <Separator className="bg-gray-800 h-[0.5px] rounded-full last:hidden" />
             </div>
           ))}
         </div>
