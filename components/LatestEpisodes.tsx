@@ -1,9 +1,9 @@
 import { home } from "@/types/types";
-import { Dot } from "lucide-react";
 import Image from "next/image";
 import { FC } from "react";
 import InsideHoverCard from "./InsideHoverCard";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
+import { ArrowRight, Dot } from "lucide-react";
 
 type LatestEpisodesProps = {
   latestEpisodeData: home["latestEpisodeAnimes"];
@@ -12,9 +12,13 @@ type LatestEpisodesProps = {
 const LatestEpisodes: FC<LatestEpisodesProps> = ({ latestEpisodeData }) => {
   return (
     <>
-      <h3 className="text-2xl  font-bold mt-12 mb-4 text-[#f97316]">
-        Latest Episode
-      </h3>
+      <div className="mt-12 mb-4 flex flex-row justify-between items-center">
+        <h3 className="text-2xl  font-bold text-[#f97316]">Latest Episode</h3>
+        <div className="flex flex-row items-center content-center text-white/30">
+          <div className="text-sm">View more</div>
+          <ArrowRight size={15} className="ml-2 p-0 m-0" />
+        </div>
+      </div>
       <div className="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-x-3 ">
         {latestEpisodeData.map((data) => (
           <div
@@ -46,12 +50,15 @@ const LatestEpisodes: FC<LatestEpisodesProps> = ({ latestEpisodeData }) => {
               </HoverCardContent>
             </HoverCard>
             <div className="flex flex-col space-y-2 items-start text-white overflow-hidden">
-              <div className=" flex flex-row hover:text-[#f97316] cursor-pointer" style={{
-                maxWidth: "100%",
-                textOverflow: "ellipsis",
-                whiteSpace: "nowrap",
-                overflow: "hidden",
-              }}>
+              <div
+                className=" flex flex-row hover:text-[#f97316] cursor-pointer"
+                style={{
+                  maxWidth: "100%",
+                  textOverflow: "ellipsis",
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                }}
+              >
                 <h3 className="text-sm font-bold">{data.name}</h3>
               </div>
               <p className="text-sm text-gray-300">
