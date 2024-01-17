@@ -2,6 +2,8 @@
 import { home } from "@/types/types";
 import React, { useEffect } from "react";
 import { Button } from "./ui/button";
+import { cn } from "@/lib/utils";
+import { color } from "framer-motion";
 
 type GenresProps = {
   genresData: home["genres"];
@@ -12,10 +14,7 @@ const Genres: React.FC<GenresProps> = ({ genresData }) => {
   const [data, setData] = React.useState<home["genres"]>(
     genresData.slice(0, 24)
   );
-
-  const colors = React.useMemo(() => {
-    return genresData.map((genre) => getRandomColor());
-  }, [genresData]);
+  const [hover, setHover] = React.useState<boolean>(false);
 
   useEffect(() => {
     if (show) {
@@ -25,19 +24,57 @@ const Genres: React.FC<GenresProps> = ({ genresData }) => {
     }
   }, [show, genresData]);
 
+  const colors = [
+    "4CE0D2",
+    "F3FFB9",
+    "9ae5e6",
+    "e28413",
+    "09e85e",
+    "ef3054",
+    "ff0f80",
+  ];
+
+  const hoverColors = [
+    "hover:bg-[rgba(76, 224, 210, 0.2)]",
+    "hover:bg-[rgba(243, 255, 185, 0.2)]",
+    "hover:bg-[rgba(154, 229, 230, 0.2)]",
+    "hover:bg-[rgba(226, 132, 19, 0.2)]",
+    "hover:bg-[rgba(9, 232, 94, 0.2)]",
+    "hover:bg-[rgba(239, 48, 84, 0.2)]",
+    "hover:bg-[rgba(255, 15, 128, 0.2)]",
+  ];
+
+  const genrewithColor = data.map((genre) => {
+    return {
+      genre: genre,
+      color: colors[genresData.indexOf(genre)]
+        ? colors[genresData.indexOf(genre)]
+        : colors[genresData.indexOf(genre) % 7],
+      hoverColors: hoverColors[genresData.indexOf(genre)]
+        ? hoverColors[genresData.indexOf(genre)]
+        : hoverColors[genresData.indexOf(genre) % 7],
+    };
+  });
+  console.log("genre with color", genrewithColor);
   return (
     <>
       <h3 className="text-2xl  font-bold mt-12 mb-4 text-[#f97316]">Genres</h3>
-      <div className=" bg-[#252424]  p-4">
+      <div className=" bg-[#171717] rounded-sm  p-4">
         <div className="grid  grid-cols-3">
-          {data.map((genre) => (
+          {genrewithColor.map((genre, idx) => (
             <h2
-              className="  text-white rounded-md w-full hover:bg-white/10 p-3 truncate"
-              style={{ color: colors[genresData.indexOf(genre)],
-               }}
-              key={genre}
+              className={cn(
+                `rounded-md w-full p-3 truncate cursor-pointer hover:bg-white/10 text-start transition-all duration-200 `
+              )}
+              style={{
+                color: `#${genre.color}`,
+                transition: "all 0.2s ease",
+              }}
+              key={idx}
             >
-              <span className="text-sm font-semibold">{genre}</span>
+              <span className={cn()} style={{}}>
+                {genre.genre}
+              </span>
             </h2>
           ))}
         </div>
@@ -57,11 +94,11 @@ const Genres: React.FC<GenresProps> = ({ genresData }) => {
 
 export default Genres;
 
-function getRandomColor() {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
-  for (let i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
+// function getRandomColor() {
+//   const letters = "0123456789ABCDEF";
+//   let color = "#";
+//   for (let i = 0; i < 6; i++) {
+//     color += letters[Math.floor(Math.random() * 16)];
+//   }
+//   return color;
+// }
