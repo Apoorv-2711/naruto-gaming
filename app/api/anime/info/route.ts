@@ -2,9 +2,8 @@
 
 import scrapeAnimeAboutInfo from "@/parser/animeAboutInfoPage";
 import { headers } from "next/headers";
-import { NextApiRequest, NextApiResponse } from "next";
-import { NextResponse } from "next/server";
-export async function GET(req: NextApiRequest) {
+import { NextRequest, NextResponse } from "next/server";
+export async function GET(req: NextRequest) {
   try {
     // const animeId = req.url?.split("?id=")[1];
     // const headers =
