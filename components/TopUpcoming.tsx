@@ -1,26 +1,26 @@
 import { home } from "@/types/types";
-import Image from "next/image";
 import { FC } from "react";
-import InsideHoverCard from "./InsideHoverCard";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
+import Image from "next/image";
+import InsideHoverCard from "./InsideHoverCard";
 import { ArrowRight, Dot } from "lucide-react";
 
-type LatestEpisodesProps = {
-  latestEpisodeData: home["latestEpisodeAnimes"];
+type TopUpcomingProps = {
+  topUpcomingData: home["topUpcomingAnimes"];
 };
 
-const LatestEpisodes: FC<LatestEpisodesProps> = ({ latestEpisodeData }) => {
+const TopUpcoming: FC<TopUpcomingProps> = ({ topUpcomingData }) => {
   return (
     <>
       <div className="mt-12 mb-4 flex flex-row justify-between items-center">
-        <h3 className="text-2xl  font-bold text-[#f97316]">Latest Episode</h3>
+        <h3 className="text-2xl  font-bold text-[#f97316]">Top Upcoming</h3>
         <div className="flex flex-row items-center content-center text-white/30">
           <div className="text-sm">View more</div>
           <ArrowRight size={15} className="ml-2 p-0 m-0" />
         </div>
       </div>
       <div className="grid grid-cols-3 md:grid-cols-4 xl:grid-cols-6 gap-x-3 ">
-        {latestEpisodeData.map((data) => (
+        {topUpcomingData.map((data) => (
           <div
             className="group mb-5 w-full space-y-3 after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:shadow-highlight"
             key={data.id}
@@ -40,9 +40,9 @@ const LatestEpisodes: FC<LatestEpisodesProps> = ({ latestEpisodeData }) => {
                   width={720}
                   height={480}
                   sizes="(max-width: 640px) 100vw,
-                  (max-width: 1280px) 50vw,
-                  (max-width: 1536px) 33vw,
-                  25vw"
+                      (max-width: 1280px) 50vw,
+                      (max-width: 1536px) 33vw,
+                      25vw"
                 />
               </HoverCardTrigger>
               <HoverCardContent className=" dark min-w-[350px] w-min  bg-[#25242489] text-white rounded-lg border-none bg-opacity-60 backdrop-blur-lg p-0 m-0">
@@ -74,4 +74,4 @@ const LatestEpisodes: FC<LatestEpisodesProps> = ({ latestEpisodeData }) => {
   );
 };
 
-export default LatestEpisodes;
+export default TopUpcoming;
