@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/hover-card";
 import Image from "next/image";
 import InsideHoverCard from "./InsideHoverCard";
+import Balancer from "react-wrap-balancer";
 
 type AnimeListPorps = {
   data: home["topAiringAnimes"];
@@ -46,7 +47,7 @@ const AnimeList: React.FC<AnimeListPorps> = ({ data, header, className }) => {
               </HoverCard>
               <div className="flex flex-col items-start space-y-2">
                 <h3 className="font-semibold">{item.name}</h3>
-                <div className="flex flex-row gap-x-[1px] items-center justify-center">
+                <div className="flex sm:flex-row flex-wrap gap-x-[1px] items-center sm:justify-center justify-start">
                   <Badge
                     variant="secondary"
                     className="flex flex-row rounded-r-none px-1"
@@ -73,10 +74,13 @@ const AnimeList: React.FC<AnimeListPorps> = ({ data, header, className }) => {
                         : item.otherInfo[1]}
                     </span>
                   </Badge>
+                  <div className="flex flex-row items-center space-x-1">
+
                   <Dot className="m-0 p-0 text-gray-500" />
                   <span className="text-gray-500 font-semibold text-sm p-0 m-0">
                     {item.otherInfo[item.otherInfo.length - 1]}
                   </span>
+                  </div>
                 </div>
               </div>
             </div>

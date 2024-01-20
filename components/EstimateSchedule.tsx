@@ -68,7 +68,7 @@ const EstimateSchedule: FC<EstimateScheduleProps> = ({
         <h3 className="text-2xl font-bold text-[#f97316]">
           Estimated Schedule
         </h3>
-        <Badge className="bg-white p-1 text-black rounded-full">
+        <Badge className="bg-white p-1 text-black rounded-full md:block hidden">
           <div className="font-bold text-sm mx-1" suppressHydrationWarning>
             {currentTime}
           </div>
@@ -81,15 +81,16 @@ const EstimateSchedule: FC<EstimateScheduleProps> = ({
             startIndex: new Date().getDate() - 1,
             Animation: "scroll",
             scroll: 1,
+            dragFree: true,
           }}
         >
-          <CarouselContent className="flex flex-auto w-full px-2 gap-x-4 ">
+          <CarouselContent className="flex flex-auto w-full px-1 gap-x-4 cursor-pointer">
             {dateList.map((date, index) => (
-              <CarouselItem key={index} className="basis-1/6">
+              <CarouselItem key={index} className="basis-auto">
                 <Card
                   className={`${
                     activeTab !== date ? "bg-[#262525]" : "bg-[#f97316] "
-                  } border-none p-2`}
+                  } border-none p-2 min-w-[150px] `}
                   onClick={() => {
                     setActiveTab(date);
                   }}
@@ -150,11 +151,10 @@ const EstimateSchedule: FC<EstimateScheduleProps> = ({
                         </span>
                       </div>
                       <Link
-                        className="text-white flex flex-row justify-center items-center group-hover:bg-[#f97316] group-hover:text-black px-2 py-1 rounded-md transition-colors duration-150"
-                        href="#"
+                        className="text-white w-1/4 sm:w-auto items-end group-hover:bg-[#f97316] group-hover:text-black px-2 py-1 rounded-md transition-colors duration-150"
+                        href=""
                       >
-                        <PlayCircle size={15} className="w-4 h-4 mr-1" />
-                        <span>Episode 2</span>
+                        <span className="whitespace-nowrap">Episode 2</span>
                       </Link>
                     </li>
                   </ul>
@@ -162,20 +162,22 @@ const EstimateSchedule: FC<EstimateScheduleProps> = ({
                 <Separator className="px-4 mx-auto bg-gray-800 h-[0.5px]" />
               </div>
             ))}
-            <div
-              className="text-white mx-4 my-6 px-0 py-0 font-bold cursor-pointer hover:text-[#f97316]"
-              onClick={() => {
-                setShow((prev) => {
-                  if (prev === 7) {
-                    return undefined;
-                  } else {
-                    return 7;
-                  }
-                });
-              }}
-            >
-              {show === 7 ? "Show More" : "Show Less"}
-            </div>
+            {data.length > 7 && (
+              <div
+                className="text-white mx-4 my-6 px-0 py-0 font-bold cursor-pointer hover:text-[#f97316]"
+                onClick={() => {
+                  setShow((prev) => {
+                    if (prev === 7) {
+                      return undefined;
+                    } else {
+                      return 7;
+                    }
+                  });
+                }}
+              >
+                {show === 7 ? "Show More" : "Show Less"}
+              </div>
+            )}
           </div>
         )}
       </div>
