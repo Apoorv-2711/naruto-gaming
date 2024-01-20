@@ -10,6 +10,14 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Naruto Gaming | Home",
   description: "Watch all your favourite anime for free on Naruto Gaming",
+  icons: [
+    {
+      href: "/logo.png",
+      sizes: "512x512",
+      type: "image/png",
+      url: "/logo.png",
+    },
+  ],
 };
 
 const home = async () => {
@@ -23,7 +31,6 @@ const home = async () => {
       <CarouselItems carouselData={carouselData} />
       <Trending trendingData={trendingData} />
       <ShareSection />
-      
       <CommentSection />
       <TopAiringSection topAiringAnimes={topAiringAnimes} />
       <RecentSection />

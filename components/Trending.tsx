@@ -7,7 +7,7 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious,
+  CarouselPreviousCustom,
 } from "./ui/carousel";
 
 type TrendingProps = {
@@ -17,7 +17,9 @@ type TrendingProps = {
 const Trending: FC<TrendingProps> = ({ trendingData }) => {
   return (
     <div className="h-full mx-auto">
-      <h3 className="text-2xl font-bold mt-12  ml-4 text-[#f97316]">Trending</h3>
+      <h3 className="text-2xl font-bold mt-12  ml-4 text-[#f97316]">
+        Trending
+      </h3>
       <div className="flex overflow-x-auto p-6 sm:pr-14 items-center justify-center ">
         <Carousel className="w-full">
           <CarouselContent className="sm:space-x-4">
@@ -63,9 +65,8 @@ const Trending: FC<TrendingProps> = ({ trendingData }) => {
             })}
           </CarouselContent>
           <div className="sm:block hidden">
-
-          <CarouselNext className="border-none bg-gray-400 top-1/4 py-12 rounded-lg" />
-          <CarouselPrevious className="border-none bg-gray-400 top-3/4 py-12 rounded-lg" />
+            <CarouselNext className="border-none bg-gray-400 top-1/4 py-12 rounded-lg" />
+            <CarouselPreviousCustom className="border-none bg-gray-400 top-3/4 py-12 rounded-lg" />
           </div>
         </Carousel>
       </div>

@@ -7,8 +7,6 @@ const RecentSection = async () => {
     <div className="flex xl:flex-row flex-col">
       <LeftSide />
       <RightSide />
-      {/* <LatestEpisodes latestEpisodeData={latestEpisodeData} />
-      <Genres genresData={genresData} /> */}
     </div>
   );
 };

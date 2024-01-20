@@ -49,7 +49,7 @@ const AnimeList: React.FC<AnimeListPorps> = ({ data, header, className }) => {
                 <div className="flex flex-row gap-x-[1px] items-center justify-center">
                   <Badge
                     variant="secondary"
-                    className="flex flex-row rounded-r-none"
+                    className="flex flex-row rounded-r-none px-1"
                   >
                     <Subtitles size={15} className="mr-1" />
                     <span>{item.otherInfo[0]}</span>
@@ -57,7 +57,7 @@ const AnimeList: React.FC<AnimeListPorps> = ({ data, header, className }) => {
                   {item.otherInfo[1] && (
                     <Badge
                       variant="secondary"
-                      className="flex flex-row rounded-none"
+                      className="flex flex-row rounded-none px-1"
                     >
                       <Mic size={15} className="mr-1" />
                       <span>{item.otherInfo[1]}</span>

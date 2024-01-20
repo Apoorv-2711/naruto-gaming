@@ -17,13 +17,15 @@ module.exports = {
     },
     extend: {
       colors: {
-        color1: "#4CE0D2",
-        color2: "#F3FFB9",
-        color3: "#9AE5E6",
-        color4: "#E28413",
-        color5: "#09E85E",
-        color6: "#EF3054",
-        color7: "#FF0F80",
+        genreColors: {
+        1: "#4CE0D2",
+        2: "#F3FFB9",
+        3: "#9AE5E6",
+        4: "#E28413",
+        5: "#09E85E",
+        6: "#EF3054",
+        7: "#FF0F80",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

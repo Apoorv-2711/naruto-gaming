@@ -196,3 +196,14 @@ export type gogoRecent = {
   link: string;
   id: string;
 };
+
+export type estimateSchedule = {
+  scheduledAnimes: [
+    {
+      id: string;
+      time: string; // 24 hours format
+      name: string;
+      jname: string;
+    }
+  ];
+};

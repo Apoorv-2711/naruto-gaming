@@ -123,7 +123,7 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
       <div className="p-6 lg:w-[calc(100%-300px)] w-full">
         <div className="flex flex-row justify-between items-center mb-4">
           <Tabs defaultValue={activeTab}>
-            <TabsList className="bg-transparent">
+            <TabsList className="bg-transparent hidden sm:block">
               <TabsTrigger
                 value="newest_comment"
                 className="text-white hover:text-gray-300 transition-colors duration-200 data-[state=active]:bg-transparent  data-[state=active]:border-2 data-[state=active]:border-[#f97316] data-[state=active]:text-[#f97316] rounded-3xl"
@@ -139,8 +139,24 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
                 Top Comments
               </TabsTrigger>
             </TabsList>
+            <TabsList className="bg-transparent block sm:hidden">
+              <TabsTrigger
+                value="newest_comment"
+                className="text-white hover:text-gray-300 transition-colors duration-200 data-[state=active]:bg-transparent  data-[state=active]:border-2 data-[state=active]:border-[#f97316] data-[state=active]:text-[#f97316] rounded-3xl"
+                onClick={() => setActiveTab("newest_comment")}
+              >
+                Newest
+              </TabsTrigger>
+              <TabsTrigger
+                value="top_comment"
+                className="text-white hover:text-gray-300 transition-colors duration-200 data-[state=active]:bg-transparent data-[state=active]:border-2 data-[state=active]:border-[#f97316] data-[state=active]:text-[#f97316] rounded-3xl"
+                onClick={() => setActiveTab("top_comment")}
+              >
+                Top
+              </TabsTrigger>
+            </TabsList>
           </Tabs>
-          <div className="flex flex-row  justify-center items-center gap-x-2">
+          <div className="flex flex-row justify-center items-center gap-x-2">
             <Label
               className="text-white hidden sm:block"
               htmlFor="show-comments"
