@@ -59,20 +59,18 @@ const Genres: React.FC<GenresProps> = ({ genresData }) => {
           {genrewithColor.map((genre, idx) => (
             <h2
               id={`${genre.id}`}
-              className={`rounded-md w-full p-3 cursor-pointer  text-start transition-all duration-200`}
+              className={`rounded-md w-full p-3 cursor-pointer text-start transition-all duration-200 ease-in truncate`}
               style={{
                 color: `#${genre.color}`,
-                transition: "all 0.2s ease",
               }}
               onMouseEnter={() => setHoverId(genre.id)} 
               key={genre.id}
             >
-              <p
-                className={``}
-                style={{}}
+              <span
+                className={`text-sm font-semibold`}
               >
                 {genre.genre}
-              </p>
+              </span>
             </h2>
           ))}
         </div>
