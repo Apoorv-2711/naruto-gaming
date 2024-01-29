@@ -1,9 +1,14 @@
 import scrapeHomePage from "@/parser/homePage";
 import Genres from "./Genres";
 import Top10 from "./Top10";
+import { QueryClient } from "@tanstack/react-query";
 
 const RightSide = async () => {
-  const data = await scrapeHomePage();
+  const queryClient = new QueryClient();
+  const data = await queryClient.fetchQuery({
+    queryKey: ["homePage"],
+    queryFn: () => scrapeHomePage(),
+  });
   const genresData = data.genres;
   const top10Data = data.top10Animes;
   return (

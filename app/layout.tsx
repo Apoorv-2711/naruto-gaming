@@ -15,7 +15,6 @@ export const metadata: Metadata = {
   generator: "Next.js",
   manifest: "/manifest.json",
   keywords: ["anime", "naruto", "gaming", "narutogaming", "latest anime"],
-  // themeColor: [{ media: "(prefers-color-scheme: dark)", color: "#fff" }],
   icons: [
     { rel: "apple-touch-icon", url: "icons/icon-128x128.png" },
     { rel: "icon", url: "icons/icon-128x128.png" },
@@ -36,7 +35,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${poppins.className} scrollbar-thin scrollbar-thumb-orange-500 scrollbar-track-gray-900 scrollbar-thumb-rounded    scrollbar-thumb-opacity-50 scrollbar-track-opacity-50`}
+        className={`${poppins.className} scrollbar-thin scrollbar-thumb-orange-500 scrollbar-track-gray-900 scrollbar-thumb-rounded scrollbar-thumb-opacity-50 scrollbar-track-opacity-50`}
       >
         <TanstackProvider>
           <NextTopLoader />

@@ -130,7 +130,7 @@ export default function CarouselItems({ carouselData }: Props) {
                           <PlayCircleIcon size={15} />
                           <span>Watch Now</span>
                         </Button>
-                        <Link href={`${item.id}`}>
+                        <Link href={`anime/${item.id}`}>
                           <Button
                             variant="secondary"
                             className="flex items-center justify-center gap-x-1"

@@ -5,7 +5,14 @@ import ShareSection from "@/components/ShareSection";
 import TopAiringSection from "@/components/TopAiringSection";
 import Trending from "@/components/Trending";
 import scrapeHomePage from "@/parser/homePage";
+import {
+  HydrationBoundary,
+  QueryClient,
+  dehydrate,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { Metadata } from "next";
+import { Suspense } from "react";
 
 export const metadata: Metadata = {
   title: "Naruto Gaming | Home",
@@ -21,19 +28,25 @@ export const metadata: Metadata = {
 };
 
 const home = async () => {
-  const data = await scrapeHomePage();
+  const queryClient = new QueryClient();
+  const data = await queryClient.fetchQuery({
+    queryKey: ["homePage"],
+    queryFn: () => scrapeHomePage(),
+  });
   const carouselData = data.spotlightAnimes;
   const trendingData = data.trendingAnimes;
   const topAiringAnimes = data.topAiringAnimes;
 
   return (
     <div className="h-full">
-      <CarouselItems carouselData={carouselData} />
-      <Trending trendingData={trendingData} />
-      <ShareSection />
-      <CommentSection />
-      <TopAiringSection topAiringAnimes={topAiringAnimes} />
-      <RecentSection />
+      <HydrationBoundary state={dehydrate(queryClient)}>
+        <CarouselItems carouselData={carouselData} />
+        <Trending trendingData={trendingData} />
+        <ShareSection />
+        <CommentSection />
+        <TopAiringSection topAiringAnimes={topAiringAnimes} />
+        <RecentSection />
+      </HydrationBoundary>
     </div>
   );
 };
