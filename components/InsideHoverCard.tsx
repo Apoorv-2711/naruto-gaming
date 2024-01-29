@@ -14,10 +14,7 @@ type InsideHoverCardProps = {
 
 const InsideHoverCard: FC<InsideHoverCardProps> = ({ id }) => {
   const getData = async () => {
-    const res = await fetch(`/api/anime/info`, {
-      headers: {
-        "anime-id": id,
-      },
+    const res = await fetch(`/api/anime/info?id=${id}`, {
       cache: "no-cache",
     });
     const data = await res.json();

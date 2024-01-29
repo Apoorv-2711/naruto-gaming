@@ -5,10 +5,10 @@ import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest) {
   try {
-    // const animeId = req.url?.split("?id=")[1];
-    // const headers =
-    const headersList = headers();
-    const animeId = headersList.get("anime-id");
+    const animeId = req.nextUrl.searchParams.get("id");
+
+    // const headersList = headers();
+    // const animeId = headersList.get("anime-id");
 
     if (!animeId)
       return new NextResponse("Anime Id is required..", { status: 400 });
