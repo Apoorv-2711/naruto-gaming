@@ -7,7 +7,19 @@ body,
 :root {
   height: 100%;
 }
- 
+
+@layer base {
+  .text-edge-outline {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+  }
+  .text-edge-outline-2 {
+    -webkit-text-stroke: 2px rgb(84 13 110 / var(--tw-bg-opacity));
+  }
+  .text-edge-outline-3 {
+    -webkit-text-stroke: 3px rgb(238 66 102 / var(--tw-bg-opacity));
+  }
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -15,70 +27,76 @@ body,
 
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
- 
+
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
- 
+
     --primary: 222.2 47.4% 11.2%;
     --primary-foreground: 210 40% 98%;
- 
+
     --secondary: 210 40% 96.1%;
     --secondary-foreground: 222.2 47.4% 11.2%;
- 
+
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
- 
+
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
- 
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
     --ring: 222.2 84% 4.9%;
- 
+
     --radius: 0.5rem;
   }
- 
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
- 
+
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
- 
+
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
- 
+
     --primary: 210 40% 98%;
     --primary-foreground: 222.2 47.4% 11.2%;
- 
+
     --secondary: 217.2 32.6% 17.5%;
     --secondary-foreground: 210 40% 98%;
- 
+
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
- 
+
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
- 
+
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
- 
+
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
   }
-
-
-
 }
 
 .instagram-gradient {
-  background: radial-gradient(circle at 19.38% 42.035%, #fd5 0%, #ff543f 32.8%, #fc5245 34.8%, #e64771 50.4%, #d53e91 64.3%, #cc39a4 76.1%, #c837ab 84.1%);
+  background: radial-gradient(
+    circle at 19.38% 42.035%,
+    #fd5 0%,
+    #ff543f 32.8%,
+    #fc5245 34.8%,
+    #e64771 50.4%,
+    #d53e91 64.3%,
+    #cc39a4 76.1%,
+    #c837ab 84.1%
+  );
 }
- 
+
 @layer base {
   * {
     @apply border-border;

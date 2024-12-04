@@ -38,7 +38,7 @@ export default function RootLayout({
         className={`${poppins.className} scrollbar-thin scrollbar-thumb-orange-500 scrollbar-track-gray-900 scrollbar-thumb-rounded scrollbar-thumb-opacity-50 scrollbar-track-opacity-50`}
       >
         <TanstackProvider>
-          <NextTopLoader />
+          <NextTopLoader showSpinner={false} color="#f97316" />
           {children}
         </TanstackProvider>
       </body>

@@ -21,7 +21,11 @@ const nextConfig = {
         protocol: "https",
       },
       {
-        hostname: "aniwatch.to",
+        hostname: "hianime.to",
+        protocol: "https",
+      },
+      {
+        hostname: "cdn.noitatnemucod.net",
         protocol: "https",
       },
     ],

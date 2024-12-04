@@ -9,15 +9,15 @@ import { QueryClient } from "@tanstack/react-query";
 const LeftSide = async () => {
   const dateList = generateDateList();
   const date = currentDate();
-  const estimateSchedule = await fetch(
-    `https://api-aniwatch.onrender.com/anime/schedule?date=${date}`
-  );
+  // const estimateSchedule = await fetch(
+  //   `https://api-aniwatch.onrender.com/anime/schedule?date=${date}`
+  // );
   const queryClient = new QueryClient();
   const data = await queryClient.fetchQuery({
     queryKey: ["homePage"],
     queryFn: () => scrapeHomePage(),
   });
-  const estimateScheduleData = await estimateSchedule.json();
+  // const estimateScheduleData = await estimateSchedule.json();
   const latestEpisodeData = data.latestEpisodeAnimes;
   const newOnNarutoWatchData = data.latestEpisodeAnimes;
   const topUpcomingData = data.topUpcomingAnimes;
@@ -26,11 +26,11 @@ const LeftSide = async () => {
     <div className="xl:w-3/4 w-full px-4">
       <LatestEpisodes latestEpisodeData={latestEpisodeData} />
       <NewOnNarutoWatch newOnNarutoWatchData={newOnNarutoWatchData} />
-      <EstimateSchedule
+      {/* <EstimateSchedule
         estimateScheduleData={estimateScheduleData}
         dateList={dateList}
         currentDate={date}
-      />
+      /> */}
       <TopUpcoming topUpcomingData={topUpcomingData} />
     </div>
   );

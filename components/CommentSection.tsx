@@ -117,7 +117,7 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
         alt="comment"
         className="h-[300px] w-[300px] hidden lg:block"
         height="1080"
-        src="https://aniwatch.to/images/discussion.png"
+        src="https://hianime.to/images/discussion.png"
         width="1080"
       />
       <div className="p-6 lg:w-[calc(100%-300px)] w-full">
@@ -184,7 +184,7 @@ const CommentSection: FC<CommentSectionProps> = ({}) => {
                     <CardHeader className="space-y-4">
                       <div className="flex items-center justify-start space-x-2">
                         <Avatar>
-                          <AvatarImage alt={item.name} src={item.avatar}  />
+                          <AvatarImage alt={item.name} src={item.avatar} />
                           <AvatarFallback>{item.avatarFallback}</AvatarFallback>
                         </Avatar>
                         <div>
