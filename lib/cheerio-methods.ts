@@ -365,16 +365,6 @@ function getSearchDateFilterValue(
   ].filter((d) => Boolean(d));
 }
 
-function substringAfter(str: string, toFind: string) {
-  const index = str.indexOf(toFind);
-  return index == -1 ? "" : str.substring(index + toFind.length);
-}
-
-function substringBefore(str: string, toFind: string) {
-  const index = str.indexOf(toFind);
-  return index == -1 ? "" : str.substring(0, index);
-}
-
 export {
   extractAnime,
   exrtactTop10Animes,
@@ -382,6 +372,4 @@ export {
   retrieveServerId,
   getSearchFilterValue,
   getSearchDateFilterValue,
-  substringAfter,
-  substringBefore,
 };
