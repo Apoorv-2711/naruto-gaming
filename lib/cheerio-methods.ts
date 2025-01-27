@@ -1,26 +1,52 @@
-import type {
-  Anime,
-  Top10Anime,
-  MostPopularAnime,
-  Top10AnimeTimePeriod,
-} from "@/models/anime";
 import createHttpError, { type HttpError } from "http-errors";
 import type { CheerioAPI, SelectorType } from "cheerio";
+import {
+  Anime,
+  MostPopularAnime,
+  Top10Anime,
+  Top10AnimeTimePeriod,
+} from "@/types/anime";
+import { SEARCH_PAGE_FILTERS } from "./constants";
+import { FilterKeys } from "@/types/animeSearch";
 
-export const extractAnimes = (
+// scrapper to scrap anime
+
+/**
+ * Extracts the anime from the given selector
+ * @param $ - CheerioAPI
+ * @param selector - SelectorType
+ * @param scraperName - string
+ * @returns Anime[]
+ * @throws HttpError
+ * @example
+ * extractAnime($, ".film-item", "9anime")
+ * // => Anime[]
+ * @example
+ * extractAnime($, ".film-item", "gogoanime")
+ * // => Anime[]
+ * @example
+ * extractAnime($, ".film-item", "kissanime")
+ * // => Anime[]
+
+  */
+const extractAnime = (
   $: CheerioAPI,
-  selector: SelectorType
-): Anime[] | HttpError => {
+  selector: SelectorType,
+  scraperName: string
+): Anime[] => {
   try {
     const animes: Anime[] = [];
+    //  finding the anime id
 
+    /* 
+anime id is found in the link tag under the film-name class div with link which has /${id}
+    eg : 
+    <div class="film-name">
+    <a href="/one-piece-100" class="dynamic-name" >One Piece</a>
+    </div>
+
+*/
     $(selector).each((_, el) => {
-      /*
-        URL looks like this: /jujutsu-kaisen-2nd-season-18413?ref=search
-        we want to extract the animeId from the url which is "jujustu-kaisen-2nd-season-18413" in this case
-
-    */
-
       const animeId =
         $(el)
           .find(".film-detail .film-name .dynamic-name")
@@ -28,196 +54,208 @@ export const extractAnimes = (
           ?.slice(1)
           .split("?ref=search")[0] || null;
 
-      const animeName = $(el)
-        .find(".film-detail .film-name .dynamic-name")
-        ?.text()
-        ?.trim();
-
-      const animePoster =
-        $(el).find(".film-poster .film-poster-img")?.attr("data-src")?.trim() ||
-        null;
-
-      const animeDuration =
-        $(el)
+      animes.push({
+        id: animeId,
+        name: $(el)
+          .find(".film-detail .film-name .dynamic-name")
+          ?.text()
+          ?.trim(),
+        jname:
+          $(el)
+            .find(".film-detail .film-name .dynamic-name")
+            ?.attr("data-jname")
+            ?.trim() || null,
+        poster:
+          $(el)
+            .find(".film-poster .film-poster-img")
+            ?.attr("data-src")
+            ?.trim() || null,
+        duration: $(el)
           .find(".film-detail .fd-infor .fdi-item.fdi-duration")
           ?.text()
-          ?.trim() || null;
-
-      const animeType =
-        $(el)
+          ?.trim(),
+        type: $(el)
           .find(".film-detail .fd-infor .fdi-item:nth-of-type(1)")
           ?.text()
-          ?.trim() || null;
-
-      const animeRating =
-        $(el).find(".film-poster .tick-rate")?.text()?.trim() || null;
-
-      const animeEpisodeSub =
-        Number(
-          $(el).find(".film-poster .tick-sub")?.text()?.trim().split(" ").pop()
-        ) || null; // <div class="tick-item tick-sub"><i class="fas fa-closed-captioning mr-1"></i>23</div>
-
-      const animeEpisodeDub =
-        Number(
-          $(el).find(".film-poster .tick-dub")?.text()?.trim().split(" ").pop()
-        ) || null; // <div class="tick-item tick-dub"><i class="fas fa-closed-captioning mr-1"></i>23</div>
-
-      animes.push({
-        id: animeId,
-        name: animeName,
-        poster: animePoster,
-        duration: animeDuration,
-        type: animeType,
-        rating: animeRating,
+          ?.trim(),
+        rating: $(el).find(".film-poster .tick-rate")?.text()?.trim() || null,
         episodes: {
-          sub: animeEpisodeSub,
-          dub: animeEpisodeDub,
+          sub:
+            Number(
+              $(el)
+                .find(".film-poster .tick-sub")
+                ?.text()
+                ?.trim()
+                .split(" ")
+                .pop()
+            ) || null,
+          dub:
+            Number(
+              $(el)
+                .find(".film-poster .tick-dub")
+                ?.text()
+                ?.trim()
+                .split(" ")
+                .pop()
+            ) || null,
         },
       });
     });
     return animes;
-  } catch (err: any) {
-    throw createHttpError.InternalServerError(
-      err?.message || "Something went wrong"
-    );
+  } catch (err) {
+    throw createHttpError(500, `Failed to scrap ${scraperName} ${err}`);
   }
 };
 
-export const extractTop10Animes = (
+/**
+ * Extracts the top 10 animes from the given selector
+ * @param $ - CheerioAPI
+ * @param period - Top10AnimeTimePeriod
+ * @param scraperName - string
+ 
+ * @returns Top10Anime[]
+ * @throws HttpError
+ * @example
+ * extractTop10Animes($, "9anime")
+ * // => Top10Anime[]
+ * @example
+ * extractTop10Animes($, "gogoanime")
+ * // => Top10Anime[]
+ *
+ */
+
+const exrtactTop10Animes = (
   $: CheerioAPI,
-  period: Top10AnimeTimePeriod
-): Top10Anime[] | HttpError => {
+  period: Top10AnimeTimePeriod,
+  scraperName: string
+): Top10Anime[] => {
   try {
     const animes: Top10Anime[] = [];
-    /*
-            In the top10anime div there are 3 divs with ids top-10-day , top-10-week , top-10-month
-             so we have to take the day week month from the period which is defined above
-        */
-    const selector = `#top-viewed-${period} ul li `;
+    const selector = `#top-viewed-${period} ul li`;
 
     $(selector).each((_, el) => {
-      const animeId =
-        $(el)
-          .find(".film-detail .dynamic-name")
-          ?.attr("href")
-          ?.slice(1)
-          .trim() || null;
-
-      const animeRank =
-        Number($(el).find(".film-number span")?.text()?.trim()) || null;
-
-      const animeName =
-        $(el).find(".film-detail .dynamic-name")?.text()?.trim() || null;
-
-      const ainmePoster =
-        $(el).find(".film-poster .film-poster-img")?.attr("data-src")?.trim() ||
-        null;
-
-      const animeEpisodeSub =
-        Number(
-          $(el)
-            .find(".film-detail .fd-infor .tick-item.tick-sub")
-            ?.text()
-            ?.trim()
-        ) || null;
-
-      const animeEpisodeDub =
-        Number(
-          $(el)
-            .find(".film-detail .fd-infor .tick-item.tick-dub")
-            ?.text()
-            ?.trim()
-        ) || null;
-
       animes.push({
-        id: animeId,
-        rank: animeRank,
-        name: animeName,
-        poster: ainmePoster,
+        id:
+          $(el)
+            .find(".film-detail .dynamic-name")
+            ?.attr("href")
+            ?.slice(1)
+            .trim() || null,
+        rank: Number($(el).find(".film-number span")?.text()?.trim()) || null,
+        name: $(el).find(".film-detail .dynamic-name")?.text()?.trim() || null,
+        jname:
+          $(el)
+            .find(".film-detail .dynamic-name")
+            ?.attr("data-jname")
+            ?.trim() || null,
+        poster:
+          $(el)
+            .find(".film-poster .film-poster-img")
+            ?.attr("data-src")
+            ?.trim() || null,
         episodes: {
-          sub: animeEpisodeSub,
-          dub: animeEpisodeDub,
+          sub:
+            Number(
+              $(el)
+                .find(".film-detail .fd-infor .tick-item.tick-sub")
+                ?.text()
+                ?.trim()
+            ) || null,
+          dub:
+            Number(
+              $(el)
+                .find(".film-detail .fd-infor .tick-item.tick-dub")
+                ?.text()
+                ?.trim()
+            ) || null,
         },
       });
     });
+
     return animes;
-  } catch (err: any) {
-    throw createHttpError.InternalServerError(
-      err?.message || "Something went wrong"
-    );
+  } catch (err) {
+    throw createHttpError(500, `Failed to scrap ${scraperName} ${err}`);
   }
 };
 
-export const extractMostPopularAnimes = (
+/**
+ * 
+ * @param $ - CheerioAPI
+ * @param selector - SelectorType
+ * @param scraperName - string
+ * 
+ * @returns MostPopularAnime[]
+ * @throws HttpError
+ * @example
+ * extractMostPopularAnimes($, ".film-item", "9anime")
+  * // => MostPopularAnime[]
+  
+ */
+
+const extractMostPopularAnimes = (
   $: CheerioAPI,
-  selector: SelectorType
-): MostPopularAnime[] | HttpError => {
+  selector: SelectorType,
+  scraperName: string
+): MostPopularAnime[] => {
   try {
     const animes: MostPopularAnime[] = [];
 
     $(selector).each((_, el) => {
-      const animeId =
-        $(el)
-          .find(".film-detail .dynamic-name")
-          ?.attr("href")
-          ?.slice(1)
-          .trim() || null;
-
-      const animeName =
-        $(el).find(".film-detail .dynamic-name")?.text()?.trim() || null;
-
-      const animePoster =
-        $(el).find(".film-poster .film-poster-img")?.attr("data-src")?.trim() ||
-        null;
-
-      const animeEpisodesSub =
-        Number($(el)?.find(".fd-infor .tick .tick-sub")?.text()?.trim()) ||
-        null;
-
-      const animeEpisodesDub =
-        Number($(el)?.find(".fd-infor .tick .tick-dub")?.text()?.trim()) ||
-        null;
-
-      const animeType =
-        $(el)
-          ?.find(".fd-infor .tick")
-          ?.text()
-          ?.trim()
-          ?.replace(/[\s\n]+/g, " ")
-          ?.split(" ")
-          ?.pop() || null;
-
-      const animeJName =
-        $(el)
-          .find(".film-detail .film-name .dynamic-name")
-          .attr("data-jname")
-          ?.trim() || null;
-
       animes.push({
-        id: animeId,
-        name: animeName,
-        poster: animePoster,
+        id:
+          $(el)
+            .find(".film-detail .dynamic-name")
+            ?.attr("href")
+            ?.slice(1)
+            .trim() || null,
+        name: $(el).find(".film-detail .dynamic-name")?.text()?.trim() || null,
+        jname:
+          $(el)
+            .find(".film-detail .film-name .dynamic-name")
+            .attr("data-jname")
+            ?.trim() || null,
+        poster:
+          $(el)
+            .find(".film-poster .film-poster-img")
+            ?.attr("data-src")
+            ?.trim() || null,
         episodes: {
-          sub: animeEpisodesSub,
-          dub: animeEpisodesDub,
+          sub:
+            Number($(el)?.find(".fd-infor .tick .tick-sub")?.text()?.trim()) ||
+            null,
+          dub:
+            Number($(el)?.find(".fd-infor .tick .tick-dub")?.text()?.trim()) ||
+            null,
         },
-        type: animeType,
-        jname: animeJName,
+        type:
+          $(el)
+            ?.find(".fd-infor .tick")
+            ?.text()
+            ?.trim()
+            ?.replace(/[\s\n]+/g, " ")
+            ?.split(" ")
+            ?.pop() || null,
       });
     });
 
     return animes;
   } catch (err: any) {
-    throw createHttpError.InternalServerError(
-      err?.message || "Something went wrong"
-    );
+    throw createHttpError(500, `Failed to scrap ${scraperName} ${err}`);
   }
 };
 
-export function retrieveServerId(
+/**
+ * Function to retrieve the server Id
+ * @param $ - CheerioAPI
+ * @param index - number
+ * @param category - "sub" | "dub" | "raw"
+ * @returns string | null
+ */
+
+function retrieveServerId(
   $: CheerioAPI,
   index: number,
-  category: "sub" | "dub"
+  category: "sub" | "dub" | "raw"
 ) {
   return (
     $(`.ps_-block.ps_-block-sub.servers-${category} > .ps__-list .server-item`)
@@ -228,3 +266,122 @@ export function retrieveServerId(
       ?.attr("data-id") || null
   );
 }
+
+/**
+ * function to get the genres filter value
+ * @param genreNames - string[]
+ *
+ * @returns string | undefined
+ */
+
+function getGenresFilterVal(genreNames: string[]): string | undefined {
+  if (genreNames.length < 1) {
+    return undefined;
+  }
+  return genreNames
+    .map((name) => SEARCH_PAGE_FILTERS["GENRES_ID_MAP"][name])
+    .join(",");
+}
+
+/**
+ * function to get the search filter value
+ * @param key - FilterKeys
+ * @param rawValue - string
+ * @returns string | undefined
+ */
+function getSearchFilterValue(
+  key: FilterKeys,
+  rawValue: string
+): string | undefined {
+  rawValue = rawValue.trim();
+  if (!rawValue) return undefined;
+
+  switch (key) {
+    case "genres": {
+      return getGenresFilterVal(rawValue.split(","));
+    }
+    case "type": {
+      const val = SEARCH_PAGE_FILTERS["TYPE_ID_MAP"][rawValue] ?? 0;
+      return val === 0 ? undefined : `${val}`;
+    }
+    case "status": {
+      const val = SEARCH_PAGE_FILTERS["STATUS_ID_MAP"][rawValue] ?? 0;
+      return val === 0 ? undefined : `${val}`;
+    }
+    case "rated": {
+      const val = SEARCH_PAGE_FILTERS["RATED_ID_MAP"][rawValue] ?? 0;
+      return val === 0 ? undefined : `${val}`;
+    }
+    case "score": {
+      const val = SEARCH_PAGE_FILTERS["SCORE_ID_MAP"][rawValue] ?? 0;
+      return val === 0 ? undefined : `${val}`;
+    }
+    case "season": {
+      const val = SEARCH_PAGE_FILTERS["SEASON_ID_MAP"][rawValue] ?? 0;
+      return val === 0 ? undefined : `${val}`;
+    }
+    case "language": {
+      const val = SEARCH_PAGE_FILTERS["LANGUAGE_ID_MAP"][rawValue] ?? 0;
+      return val === 0 ? undefined : `${val}`;
+    }
+    case "sort": {
+      return SEARCH_PAGE_FILTERS["SORT_ID_MAP"][rawValue] ?? undefined;
+    }
+    default:
+      return undefined;
+  }
+}
+
+/**
+ *  function to get the search date filter value
+ * @param isStartDate - boolean
+ * @param rawValue -  string
+ * @returns string[] | undefined
+ *
+ * @example
+ * getSearchDateFilterValue(true, "2023-10-11")
+ * // => [sy=2023, sm=10, sd=11]
+ */
+function getSearchDateFilterValue(
+  isStartDate: boolean,
+  rawValue: string
+): string[] | undefined {
+  rawValue = rawValue.trim();
+  if (!rawValue) return undefined;
+
+  const dateRegex = /^\d{4}-([0-9]|1[0-2])-([0-9]|[12][0-9]|3[01])$/;
+  const dateCategory = isStartDate ? "s" : "e";
+  const [year, month, date] = rawValue.split("-");
+
+  if (!dateRegex.test(rawValue)) {
+    return undefined;
+  }
+
+  // sample return -> [sy=2023, sm=10, sd=11]
+  return [
+    Number(year) > 0 ? `${dateCategory}y=${year}` : "",
+    Number(month) > 0 ? `${dateCategory}m=${month}` : "",
+    Number(date) > 0 ? `${dateCategory}d=${date}` : "",
+  ].filter((d) => Boolean(d));
+}
+
+function substringAfter(str: string, toFind: string) {
+  const index = str.indexOf(toFind);
+  return index == -1 ? "" : str.substring(index + toFind.length);
+}
+
+function substringBefore(str: string, toFind: string) {
+  const index = str.indexOf(toFind);
+  return index == -1 ? "" : str.substring(0, index);
+}
+
+export {
+  extractAnime,
+  exrtactTop10Animes,
+  extractMostPopularAnimes,
+  retrieveServerId,
+  getSearchFilterValue,
+  getSearchDateFilterValue,
+  substringAfter,
+  substringBefore,
+};
