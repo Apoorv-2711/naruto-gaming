@@ -3,10 +3,7 @@ import { client } from "@/server/config/client";
 import { HiAnimeError } from "../error";
 import { ScrapedAnimeAboutInfo } from "@/types/scrapper/animeAboutInfo";
 import { SRC_BASE_URL } from "@/lib/constants";
-import {
-  extractAnimes,
-  extractMostPopularAnimes,
-} from "@/lib/cheerio-methods.js";
+import { extractAnimes, extractMostPopularAnimes } from "@/lib/cheerio-methods";
 
 export async function getAnimeAboutInfo(
   animeId: string
