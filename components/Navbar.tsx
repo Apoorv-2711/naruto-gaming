@@ -4,7 +4,7 @@ import { MenuIcon, SearchIcon } from "./icons/icons";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { useState } from "react";
-
+import Image from "next/image";
 
 const Navbar = () => {
   const [navbar, setNavbar] = useState<boolean>(false);
@@ -19,7 +19,6 @@ const Navbar = () => {
   if (typeof window !== "undefined") {
     window.addEventListener("scroll", handleScroll);
   }
- 
 
   return (
     <nav
@@ -46,14 +45,13 @@ const Navbar = () => {
             </div>
           </SheetContent>
         </Sheet>
-        <img
+        <Image
           alt="Logo"
           className="object-contain"
-          src="logo.png"
-          style={{
-            height: "50px",
-            objectFit: "contain",
-          }}
+          src="/logo.png"
+          width={50}
+          height={50}
+          priority
         />
         <div className="relative hidden md:block">
           <input
