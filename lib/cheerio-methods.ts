@@ -29,7 +29,7 @@ import { FilterKeys } from "@/types/animeSearch";
  * // => Anime[]
 
   */
-const extractAnime = (
+const extractAnimes = (
   $: CheerioAPI,
   selector: SelectorType,
   scraperName: string
@@ -124,7 +124,7 @@ anime id is found in the link tag under the film-name class div with link which 
  *
  */
 
-const exrtactTop10Animes = (
+const extractTop10Animes = (
   $: CheerioAPI,
   period: Top10AnimeTimePeriod,
   scraperName: string
@@ -366,8 +366,8 @@ function getSearchDateFilterValue(
 }
 
 export {
-  extractAnime,
-  exrtactTop10Animes,
+  extractAnimes,
+  extractTop10Animes,
   extractMostPopularAnimes,
   retrieveServerId,
   getSearchFilterValue,
