@@ -1,6 +1,10 @@
+import CarouselItems from "@/components/CarouselItems";
 import CommentSection from "@/components/CommentSection";
 import RecentSection from "@/components/RecentSection";
 import ShareSection from "@/components/ShareSection";
+import TopAiringSection from "@/components/TopAiringSection";
+import Trending from "@/components/Trending";
+import { getHomePage } from "@/server/narutogaming/scrappers/homepage";
 import {
   HydrationBoundary,
   QueryClient,
@@ -25,7 +29,7 @@ const home = async () => {
   const queryClient = new QueryClient();
   const data = await queryClient.fetchQuery({
     queryKey: ["homePage"],
-    queryFn: () => scrapeHomePage(),
+    queryFn: () => getHomePage(),
     staleTime: 0,
   });
   const carouselData = data.spotlightAnimes;
@@ -35,12 +39,12 @@ const home = async () => {
   return (
     <div className="h-full">
       <HydrationBoundary state={dehydrate(queryClient)}>
-        {/* <CarouselItems carouselData={carouselData} /> */}
-        {/* <Trending trendingData={trendingData} /> */}
+        <CarouselItems carouselData={carouselData} />
+        {/* <Trending trendingData={trendingData} />
         <ShareSection />
         <CommentSection />
-        {/* <TopAiringSection topAiringAnimes={topAiringAnimes} /> */}
-        {/* <RecentSection /> */}
+        <TopAiringSection topAiringAnimes={topAiringAnimes} />
+        <RecentSection /> */}
       </HydrationBoundary>
     </div>
   );

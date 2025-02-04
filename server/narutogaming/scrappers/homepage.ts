@@ -1,6 +1,5 @@
 import { load, type CheerioAPI, type SelectorType } from "cheerio";
 
-import { client } from "@/server/config/client.js";
 import { ScrapedHomePage } from "@/types/scrapper/homePage";
 import { SRC_HOME_URL } from "@/lib/constants";
 import {
@@ -9,6 +8,7 @@ import {
   extractTop10Animes,
 } from "@/lib/cheerio-methods";
 import { HiAnimeError } from "../error";
+import { client } from "@/server/config/client";
 
 /**
  * @example
