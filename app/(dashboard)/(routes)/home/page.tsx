@@ -23,13 +23,14 @@ export const metadata: Metadata = {
 
 const home = async () => {
   const queryClient = new QueryClient();
-  // const data = await queryClient.fetchQuery({
-  //   queryKey: ["homePage"],
-  //   queryFn: () => scrapeHomePage(),
-  // });
-  // const carouselData = data.spotlightAnimes;
-  // const trendingData = data.trendingAnimes;
-  // const topAiringAnimes = data.topAiringAnimes;
+  const data = await queryClient.fetchQuery({
+    queryKey: ["homePage"],
+    queryFn: () => scrapeHomePage(),
+    staleTime: 0,
+  });
+  const carouselData = data.spotlightAnimes;
+  const trendingData = data.trendingAnimes;
+  const topAiringAnimes = data.topAiringAnimes;
 
   return (
     <div className="h-full">
