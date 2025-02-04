@@ -32,6 +32,7 @@ const home = async () => {
   const data = await queryClient.fetchQuery({
     queryKey: ["homePage"],
     queryFn: () => scrapeHomePage(),
+    staleTime: 0,
   });
   const carouselData = data.spotlightAnimes;
   const trendingData = data.trendingAnimes;
