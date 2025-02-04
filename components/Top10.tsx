@@ -1,21 +1,21 @@
 "use client";
-import { home } from "@/types/types";
 import React, { FC, useState } from "react";
 import { Button } from "./ui/button";
-import { Dot, EyeIcon, HeartIcon, Mic, Subtitles } from "lucide-react";
+import { Mic, Subtitles } from "lucide-react";
 import { Separator } from "./ui/separator";
 import Image from "next/image";
 import { Badge } from "./ui/badge";
+import { ScrapedHomePage } from "@/types/scrapper/homePage";
 
 type Top10Props = {
-  top10Data: home["top10Animes"];
+  top10Data: ScrapedHomePage["top10Animes"];
 };
 
 const Top10: FC<Top10Props> = ({ top10Data }) => {
   const [data, setData] = useState<
-    | home["top10Animes"]["today"]
-    | home["top10Animes"]["week"]
-    | home["top10Animes"]["month"]
+    | ScrapedHomePage["top10Animes"]["today"]
+    | ScrapedHomePage["top10Animes"]["week"]
+    | ScrapedHomePage["top10Animes"]["month"]
   >(top10Data.today);
 
   const [active, setActive] = useState<"today" | "week" | "month">("today");
@@ -72,9 +72,12 @@ const Top10: FC<Top10Props> = ({ top10Data }) => {
       <div className=" bg-[#171717] p-4 cursor-default rounded-sm">
         <div className="flex flex-col gap-y-4 ">
           {data.map((anime, idx) => (
-            <div className={`flex flex-col w-full ${
+            <div
+              className={`flex flex-col w-full ${
                 idx > 2 ? "hover:text-white text-white/30" : "text-white"
-            }`} key={anime.id}>
+              }`}
+              key={anime.id}
+            >
               <div className="flex flex-row items-center gap-x-2 ">
                 <div className="text-2xl font-bold pr-2 w-10 flex flex-col">
                   {idx < 9 ? `0${idx + 1}` : idx + 1}
@@ -84,10 +87,10 @@ const Top10: FC<Top10Props> = ({ top10Data }) => {
                 </div>
                 <div className="flex flex-row justify-start space-x-3 w-full">
                   <Image
-                    alt={anime.name}
+                    alt={anime.name ? anime.name : "__VK__APOORV__NG"}
                     className="w-16 h-20 rounded-md mb-2 "
                     height="1080"
-                    src={anime.poster}
+                    src={anime.poster ? anime.poster : "/logo.png"}
                     style={{
                       aspectRatio: "75/75",
                       objectFit: "cover",
@@ -120,7 +123,7 @@ const Top10: FC<Top10Props> = ({ top10Data }) => {
                         className="flex flex-row rounded-l-none px-1"
                       >
                         <span>
-                          {anime.episodes.sub > anime.episodes.dub
+                          {(anime.episodes.sub ?? 0) > (anime.episodes.dub ?? 0)
                             ? anime.episodes.sub
                             : anime.episodes.dub}
                         </span>

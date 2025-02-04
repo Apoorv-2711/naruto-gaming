@@ -20,10 +20,10 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import { home } from "@/types/types";
+import { SpotlightAnime } from "@/types/anime";
 
 type Props = {
-  carouselData: home["spotlightAnimes"];
+  carouselData: SpotlightAnime[];
 };
 
 export default function CarouselItems({ carouselData }: Props) {
@@ -108,7 +108,8 @@ export default function CarouselItems({ carouselData }: Props) {
                             className="flex flex-row rounded-l-none"
                           >
                             <span>
-                              {item.episodes.sub > item.episodes.dub
+                              {(item.episodes?.sub ?? 0) >
+                              (item?.episodes?.dub ?? 0)
                                 ? item.episodes.sub
                                 : item.episodes.dub}
                             </span>
@@ -116,9 +117,8 @@ export default function CarouselItems({ carouselData }: Props) {
                         </div>
                       </div>
                       <p className="hidden md:block max-w-2xl mb-6">
-                        
                         {item.description
-                          .replace(/(<([^>]+)>)/gi, "")
+                          ?.replace(/(<([^>]+)>)/gi, "")
                           .substring(0, 180)}
                         ...
                       </p>
@@ -148,17 +148,16 @@ export default function CarouselItems({ carouselData }: Props) {
           })}
         </CarouselContent>
         <div className="sm:block hidden">
-
-        <CarouselNext
-          className={
-            "absolute right-5 top-[400px] transform -translate-y-1/2 rounded-lg bg-white/70 hover:bg-white/80 transition-colors duration-300 ease-out"
-          }
-        />
-        <CarouselPrevious
-          className={
-            "absolute right-5 top-[440px]  transform -translate-y-1/2  rounded-lg bg-white/70 hover:bg-white/80 transition-colors duration-300 ease-out -left-100"
-          }
-        />
+          <CarouselNext
+            className={
+              "absolute right-5 top-[400px] transform -translate-y-1/2 rounded-lg bg-white/70 hover:bg-white/80 transition-colors duration-300 ease-out"
+            }
+          />
+          <CarouselPrevious
+            className={
+              "absolute right-5 top-[440px]  transform -translate-y-1/2  rounded-lg bg-white/70 hover:bg-white/80 transition-colors duration-300 ease-out -left-100"
+            }
+          />
         </div>
       </Carousel>
     </>

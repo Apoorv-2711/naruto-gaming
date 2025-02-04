@@ -1,6 +1,6 @@
 // /anime/info?id=${anime-id}
 
-import scrapeAnimeAboutInfo from "@/parser/animeAboutInfoPage";
+import { getAnimeAboutInfo } from "@/server/narutogaming/scrappers/animeAboutInfo";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 export async function GET(req: NextRequest) {
@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
     if (!animeId)
       return new NextResponse("Anime Id is required..", { status: 400 });
 
-    const animeInfo = await scrapeAnimeAboutInfo(animeId as string);
+    const animeInfo = await getAnimeAboutInfo(animeId as string);
 
     return NextResponse.json(animeInfo);
   } catch (err) {

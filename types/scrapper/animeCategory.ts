@@ -1,4 +1,4 @@
-import type { Anime, Top10Anime } from "../anime.js";
+import type { Anime, Top10Anime } from "../anime";
 
 export type ScrapedAnimeCategory = {
   animes: Anime[];

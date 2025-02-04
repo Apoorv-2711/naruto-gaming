@@ -1,5 +1,4 @@
 "use client";
-import { home } from "@/types/types";
 import Image from "next/image";
 import React, { FC } from "react";
 import {
@@ -11,9 +10,10 @@ import {
 } from "./ui/carousel";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { TrendingAnime } from "@/types/anime";
 
 type TrendingProps = {
-  trendingData: home["trendingAnimes"];
+  trendingData: TrendingAnime[];
 };
 
 const Trending: FC<TrendingProps> = ({ trendingData }) => {
@@ -46,7 +46,7 @@ const Trending: FC<TrendingProps> = ({ trendingData }) => {
                         }}
                       >
                         <h2 className="">{`${
-                          item.name.length > 15
+                          item.name && item.name.length > 15
                             ? item.name.slice(0, 15) + "..."
                             : item.name
                         }`}</h2>
@@ -56,10 +56,10 @@ const Trending: FC<TrendingProps> = ({ trendingData }) => {
                       </span>
                     </div>
                     <Image
-                      alt={item.id}
+                      alt={item.id ? item.id : "__VK__APOORV__NG"}
                       className="realtive w-40 h-60 rounded-md z-0 cursor-pointer"
                       height="1080"
-                      src={item.poster}
+                      src={item.poster ? item.poster : "/logo.png"}
                       style={{
                         aspectRatio: "200/300",
                         objectFit: "cover",

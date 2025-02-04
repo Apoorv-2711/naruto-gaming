@@ -1,10 +1,10 @@
-import scrapeHomePage from "@/parser/homePage";
 import LatestEpisodes from "./LatestEpisodes";
 import NewOnNarutoWatch from "./NewOnNarutoWatch";
 import TopUpcoming from "./TopUpcoming";
 import EstimateSchedule from "./EstimateSchedule";
 import { currentDate, generateDateList } from "@/util/generateDate";
 import { QueryClient } from "@tanstack/react-query";
+import { getHomePage } from "@/server/narutogaming/scrappers/homepage";
 
 const LeftSide = async () => {
   const dateList = generateDateList();
@@ -15,7 +15,7 @@ const LeftSide = async () => {
   const queryClient = new QueryClient();
   const data = await queryClient.fetchQuery({
     queryKey: ["homePage"],
-    queryFn: () => scrapeHomePage(),
+    queryFn: () => getHomePage(),
   });
   // const estimateScheduleData = await estimateSchedule.json();
   const latestEpisodeData = data.latestEpisodeAnimes;

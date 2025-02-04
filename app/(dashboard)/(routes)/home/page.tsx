@@ -40,11 +40,11 @@ const home = async () => {
     <div className="h-full">
       <HydrationBoundary state={dehydrate(queryClient)}>
         <CarouselItems carouselData={carouselData} />
-        {/* <Trending trendingData={trendingData} />
+        <Trending trendingData={trendingData} />
         <ShareSection />
         <CommentSection />
         <TopAiringSection topAiringAnimes={topAiringAnimes} />
-        <RecentSection /> */}
+        <RecentSection />
       </HydrationBoundary>
     </div>
   );

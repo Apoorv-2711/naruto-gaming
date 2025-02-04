@@ -3,7 +3,6 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { ArrowRightIcon, Dot, Mic, Subtitles } from "lucide-react";
 import { Separator } from "./ui/separator";
-import { home } from "@/types/types";
 import {
   HoverCard,
   HoverCardContent,
@@ -12,9 +11,10 @@ import {
 import Image from "next/image";
 import InsideHoverCard from "./InsideHoverCard";
 import Balancer from "react-wrap-balancer";
+import { ScrapedHomePage } from "@/types/scrapper/homePage";
 
 type AnimeListPorps = {
-  data: home["topAiringAnimes"];
+  data: ScrapedHomePage["topAiringAnimes"];
   header: string;
   className?: string;
 };
@@ -30,10 +30,10 @@ const AnimeList: React.FC<AnimeListPorps> = ({ data, header, className }) => {
               <HoverCard openDelay={0} closeDelay={0}>
                 <HoverCardTrigger asChild>
                   <Image
-                    alt={item.name}
+                    alt={item.name ? item.name : "__VK__APOORV__NG"}
                     className="w-16 h-20 rounded-md mb-2 "
                     height="1080"
-                    src={item.poster}
+                    src={item.poster ? item.poster : "/logo.png"}
                     style={{
                       aspectRatio: "75/75",
                       objectFit: "cover",
@@ -53,33 +53,23 @@ const AnimeList: React.FC<AnimeListPorps> = ({ data, header, className }) => {
                     className="flex flex-row rounded-r-none px-1"
                   >
                     <Subtitles size={15} className="mr-1" />
-                    <span>{item.otherInfo[0]}</span>
+                    <span>{item.episodes.sub}</span>
                   </Badge>
-                  {item.otherInfo[1] && (
+                  {item.episodes.dub && (
                     <Badge
                       variant="secondary"
                       className="flex flex-row rounded-none px-1"
                     >
                       <Mic size={15} className="mr-1" />
-                      <span>{item.otherInfo[1]}</span>
+                      <span>{item.episodes.dub}</span>
                     </Badge>
                   )}
-                  <Badge
-                    variant="default"
-                    className="flex flex-row rounded-l-none"
-                  >
-                    <span>
-                      {item.otherInfo[0] > item.otherInfo[1]
-                        ? item.otherInfo[0]
-                        : item.otherInfo[1]}
-                    </span>
-                  </Badge>
-                  <div className="flex flex-row items-center space-x-1">
 
-                  <Dot className="m-0 p-0 text-gray-500" />
-                  <span className="text-gray-500 font-semibold text-sm p-0 m-0">
-                    {item.otherInfo[item.otherInfo.length - 1]}
-                  </span>
+                  <div className="flex flex-row items-center space-x-1">
+                    <Dot className="m-0 p-0 text-gray-500" />
+                    <span className="text-gray-500 font-semibold text-sm p-0 m-0">
+                      {item.type}
+                    </span>
                   </div>
                 </div>
               </div>
