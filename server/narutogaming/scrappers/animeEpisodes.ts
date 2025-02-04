@@ -1,8 +1,8 @@
 import { load, type CheerioAPI } from "cheerio";
-import { client } from "../../config/client.js";
-import { HiAnimeError } from "../error.js";
-import { ScrapedAnimeEpisodes } from "@/types/scrapper/animeEpisodes.js";
-import { SRC_AJAX_URL, SRC_BASE_URL } from "@/lib/constants.js";
+import { client } from "@/server/config/client";
+import { HiAnimeError } from "../error";
+import { ScrapedAnimeEpisodes } from "@/types/scrapper/animeEpisodes";
+import { SRC_AJAX_URL, SRC_BASE_URL } from "@/lib/constants";
 
 /**
  * @param {string} animeId - unique anime id

@@ -1,8 +1,8 @@
 import { load, type CheerioAPI, type SelectorType } from "cheerio";
-import { HiAnimeError } from "../error.js";
-import { client } from "../../config/client.js";
-import { ScrapedAnimeQtipInfo } from "@/types/scrapper/animeQtip.js";
-import { SRC_AJAX_URL, SRC_HOME_URL } from "@/lib/constants.js";
+import { HiAnimeError } from "../error";
+import { client } from "@/server/config/client";
+import { ScrapedAnimeQtipInfo } from "@/types/scrapper/animeQtip";
+import { SRC_AJAX_URL, SRC_HOME_URL } from "@/lib/constants";
 
 export async function getAnimeQtipInfo(
   animeId: string

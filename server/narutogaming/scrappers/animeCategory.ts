@@ -1,10 +1,10 @@
 import { load, type CheerioAPI, type SelectorType } from "cheerio";
-import { client } from "../../config/client.js";
-import { HiAnimeError } from "../error.js";
-import { AnimeCategories } from "@/types/anime.js";
-import { ScrapedAnimeCategory } from "@/types/scrapper/animeCategory.js";
-import { SRC_BASE_URL } from "@/lib/constants.js";
-import { extractAnimes, extractTop10Animes } from "@/lib/cheerio-methods.js";
+import { client } from "@/server/config/client";
+import { HiAnimeError } from "../error";
+import { AnimeCategories } from "@/types/anime";
+import { ScrapedAnimeCategory } from "@/types/scrapper/animeCategory";
+import { SRC_BASE_URL } from "@/lib/constants";
+import { extractAnimes, extractTop10Animes } from "@/lib/cheerio-methods";
 
 export async function getAnimeCategory(
   category: AnimeCategories,

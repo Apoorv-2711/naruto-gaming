@@ -1,8 +1,8 @@
 import { load, type CheerioAPI, type SelectorType } from "cheerio";
-import { client } from "../../config/client.js";
-import { HiAnimeError } from "../error.js";
-import { ScrapedEpisodeServers } from "@/types/scrapper/episodeServers.js";
-import { SRC_AJAX_URL, SRC_BASE_URL } from "@/lib/constants.js";
+import { client } from "@/server/config/client";
+import { HiAnimeError } from "../error";
+import { ScrapedEpisodeServers } from "@/types/scrapper/episodeServers";
+import { SRC_AJAX_URL, SRC_BASE_URL } from "@/lib/constants";
 
 export async function getEpisodeServers(
   episodeId: string

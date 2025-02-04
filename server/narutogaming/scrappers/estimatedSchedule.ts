@@ -1,8 +1,8 @@
 import { load, type CheerioAPI, type SelectorType } from "cheerio";
-import { client } from "../../config/client.js";
-import { HiAnimeError } from "../error.js";
-import { ScrapedEstimatedSchedule } from "@/types/scrapper/estimatedSchedule.js";
-import { SRC_AJAX_URL, SRC_HOME_URL } from "@/lib/constants.js";
+import { client } from "@/server/config/client";
+import { HiAnimeError } from "../error";
+import { ScrapedEstimatedSchedule } from "@/types/scrapper/estimatedSchedule";
+import { SRC_AJAX_URL, SRC_HOME_URL } from "@/lib/constants";
 
 export async function getEstimatedSchedule(
   date: string

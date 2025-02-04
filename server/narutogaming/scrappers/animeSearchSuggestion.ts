@@ -1,8 +1,8 @@
 import { load, type CheerioAPI, type SelectorType } from "cheerio";
-import { client } from "../../config/client.js";
-import { HiAnimeError } from "../error.js";
-import { ScrapedAnimeSearchSuggestion } from "@/types/scrapper/animeSearchSuggestion.js";
-import { SRC_AJAX_URL, SRC_HOME_URL } from "@/lib/constants.js";
+import { client } from "@/server/config/client";
+import { HiAnimeError } from "../error";
+import { ScrapedAnimeSearchSuggestion } from "@/types/scrapper/animeSearchSuggestion";
+import { SRC_AJAX_URL, SRC_HOME_URL } from "@/lib/constants";
 
 export async function getAnimeSearchSuggestion(
   q: string

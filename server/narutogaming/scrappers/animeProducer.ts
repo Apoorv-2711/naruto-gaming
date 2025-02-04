@@ -1,8 +1,8 @@
 import { load, type CheerioAPI, type SelectorType } from "cheerio";
-import { client } from "../../config/client.js";
-import { HiAnimeError } from "../error.js";
-import { ScrapedProducerAnime } from "@/types/scrapper/animeProducer.js";
-import { SRC_BASE_URL } from "@/lib/constants.js";
+import { client } from "@/server/config/client";
+import { HiAnimeError } from "../error";
+import { ScrapedProducerAnime } from "@/types/scrapper/animeProducer";
+import { SRC_BASE_URL } from "@/lib/constants";
 import {
   extractAnimes,
   extractMostPopularAnimes,
