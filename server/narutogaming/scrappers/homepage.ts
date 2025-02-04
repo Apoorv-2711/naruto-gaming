@@ -1,14 +1,14 @@
 import { load, type CheerioAPI, type SelectorType } from "cheerio";
 
-import { ScrapedHomePage } from "@/types/scrapper/homePage.js";
-import { SRC_HOME_URL } from "@/lib/constants.js";
+import { client } from "@/server/config/client.js";
+import { ScrapedHomePage } from "@/types/scrapper/homePage";
+import { SRC_HOME_URL } from "@/lib/constants";
 import {
   extractAnimes,
   extractMostPopularAnimes,
   extractTop10Animes,
-} from "@/lib/cheerio-methods.js";
-import { HiAnimeError } from "../error.js";
-import { client } from "@/server/config/client.js";
+} from "@/lib/cheerio-methods";
+import { HiAnimeError } from "../error";
 
 /**
  * @example
