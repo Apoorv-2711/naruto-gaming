@@ -1,15 +1,15 @@
-import axios from "axios";
-import { load, type CheerioAPI } from "cheerio";
-import { client } from "@/server/config/client";
-import { HiAnimeError } from "../error";
-import { AnimeServers, Servers } from "@/types/anime";
-import { ScrapedAnimeEpisodesSources } from "@/types/scrapper/animeEpisodeSrcs";
-import MegaCloud from "@/server/extractors/megacloud";
+import { retrieveServerId } from "@/lib/cheerio-methods";
 import { SRC_AJAX_URL, SRC_BASE_URL, USER_AGENT_HEADER } from "@/lib/constants";
+import { client } from "@/server/config/client";
+import MegaCloud from "@/server/extractors/megacloud";
+import RapidCloud from "@/server/extractors/rapidcloud";
 import StreamSB from "@/server/extractors/streamsb";
 import StreamTape from "@/server/extractors/streamtape";
-import RapidCloud from "@/server/extractors/rapidcloud";
-import { retrieveServerId } from "@/lib/cheerio-methods";
+import { AnimeServers, Servers } from "@/types/anime";
+import { ScrapedAnimeEpisodesSources } from "@/types/scrapper/animeEpisodeSrcs";
+import axios from "axios";
+import { load, type CheerioAPI } from "cheerio";
+import { HiAnimeError } from "../error";
 
 // vidtreaming -> 4
 // rapidcloud  -> 1
