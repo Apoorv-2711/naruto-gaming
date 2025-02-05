@@ -1,11 +1,7 @@
 "use client";
 
-import { getEpisodeServers } from "@/actions/get-server";
-import { getAnimeEpisodeSources } from "@/server/narutogaming/scrappers/animeEpisodeSrcs";
-import { AnimeServers } from "@/types/anime";
 import { ScrapedEpisodeServers } from "@/types/scrapper/episodeServers";
-import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+
 import Player from "./Player";
 
 type Props = {
