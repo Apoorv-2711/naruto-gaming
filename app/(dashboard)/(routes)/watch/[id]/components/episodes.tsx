@@ -8,14 +8,12 @@ type Props = {
 };
 
 export default function Episodes({ episodes }: Props) {
-//   console.log(episodes);
+  //   console.log(episodes);
   return (
     <div className="flex space-x-2">
       {episodes.episodes.map((episode) => (
-        <Link href={`/watch/${episode.episodeId}`}>
-          <Button key={episode.episodeId} variant="secondary">
-            {episode.number}
-          </Button>
+        <Link href={`/watch/${episode.episodeId}`} key={episode.episodeId}>
+          <Button variant="secondary">{episode.number}</Button>
         </Link>
       ))}
     </div>
