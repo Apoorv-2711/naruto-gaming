@@ -139,21 +139,21 @@ const Player: React.FC<VideoPlayerProps> = ({ sources, tracks, intro, outro }) =
     }
   }, [])
 
-  useEffect(() => {
-    if (videoRef.current) {
-      const textTracks = videoRef.current.textTracks
-      for (let i = 0; i < textTracks.length; i++) {
-        const track = textTracks[i]
-        if (track.kind === "captions" || track.kind === "subtitles") {
-          track.mode = "disabled"
-          if (track.default) {
-            track.mode = "showing"
-            setActiveCaptionTrack(track)
-          }
-        }
-      }
-    }
-  }, [])
+//   useEffect(() => {
+//     if (videoRef.current) {
+//       const textTracks = videoRef.current.textTracks
+//       for (let i = 0; i < textTracks.length; i++) {
+//         const track = textTracks[i]
+//         if (track.kind === "captions" || track.kind === "subtitles") {
+//           track.mode = "disabled"
+//           if (track.default) {
+//             track.mode = "showing"
+//             setActiveCaptionTrack(track)
+//           }
+//         }
+//       }
+//     }
+//   }, [])
 
   return (
     <div ref={playerContainerRef} className="relative w-full aspect-video">
