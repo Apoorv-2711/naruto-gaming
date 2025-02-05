@@ -32,6 +32,7 @@ export async function getEpisodeServers(
         headers: {
           "X-Requested-With": "XMLHttpRequest",
           Referer: new URL(`/watch/${episodeId}`, SRC_BASE_URL).href,
+          cache: "no-cache",
         },
       }
     );

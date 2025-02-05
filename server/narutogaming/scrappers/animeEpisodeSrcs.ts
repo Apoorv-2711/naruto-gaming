@@ -63,6 +63,7 @@ async function _getAnimeEpisodeSources(
         headers: {
           Referer: epId,
           "X-Requested-With": "XMLHttpRequest",
+          cache: "no-cache",
         },
       }
     );
@@ -148,13 +149,25 @@ export async function getAnimeEpisodeSources(
 
     const [episodeSrcData, animeSrc] = await Promise.all([
       _getAnimeEpisodeSources(episodeId, server, category),
+      // use proxy to bypass CORS
+
       axios.get(animeURL, {
         headers: {
           Referer: SRC_BASE_URL,
           "User-Agent": USER_AGENT_HEADER,
           "X-Requested-With": "XMLHttpRequest",
+          cache: "no-cache",
         },
       }),
+
+      // axios.get(animeURL, {
+      //   headers: {
+      //     Referer: SRC_BASE_URL,
+      //     "User-Agent": USER_AGENT_HEADER,
+      //     "X-Requested-With": "XMLHttpRequest",
+      //     cache: "no-cache",
+      //   },
+      // }),
     ]);
 
     const $: CheerioAPI = load(animeSrc?.data);
