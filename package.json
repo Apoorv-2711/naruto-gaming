@@ -11,6 +11,11 @@
   "overrides": {
     "undici": "5.28.4"
   },
+  "yarn": {
+    "overrides": {
+      "undici": "5.28.4"
+    }
+  },
   "dependencies": {
     "@mantine/hooks": "^7.4.0",
     "@radix-ui/react-avatar": "^1.0.4",

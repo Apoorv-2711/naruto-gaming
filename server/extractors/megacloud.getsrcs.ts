@@ -4,9 +4,9 @@ import util from "util";
 import CryptoJS from "crypto-js";
 import { webcrypto } from "crypto";
 
-import type { extractedSrc, unencryptedSrc } from "./megacloud.js";
+import type { extractedSrc, unencryptedSrc } from "./megacloud";
 import { SRC_BASE_URL, USER_AGENT_HEADER } from "@/lib/constants";
-import { decoded_png } from "./megacloud.decodedong.js";
+import { decoded_png } from "./megacloud.decodedong";
 
 const embed_url = "https://megacloud.tv/embed-2/e-1/";
 const referrer = SRC_BASE_URL;

@@ -1,7 +1,7 @@
 import axios from "axios";
 import crypto from "crypto";
 import createHttpError, { type HttpError } from "http-errors";
-import { getSources } from "./megacloud.getsrcs.js";
+import { getSources } from "./megacloud.getsrcs";
 
 // https://megacloud.tv/embed-2/e-1/dBqCr5BcOhnD?k=1
 

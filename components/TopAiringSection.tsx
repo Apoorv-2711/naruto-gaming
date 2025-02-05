@@ -13,8 +13,6 @@ const TopAiringSection: FC<TopSectionProps> = ({ topAiringAnimes }) => {
   const MostFavoriteData = topAiringAnimes.slice(10, 15);
   const LatestCompletedData = topAiringAnimes.slice(15, 20);
 
-  console.log(TopAiringData);
-
   return (
     <div className="text-white flex flex-row flex-wrap justify-between p-4 items-center">
       <AnimeList

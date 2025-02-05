@@ -1,12 +1,14 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ScrapedAnimeAboutInfo } from "@/types/scrapper/animeAboutInfo";
+import Link from "next/link";
 
 type Props = {
   animeData: ScrapedAnimeAboutInfo;
 };
 
 export default function Info({ animeData }: Props) {
+  // console.log(animeData.anime);
   return (
     <div className=" text-white">
       <div className="flex mx-auto px-4 sm:px-6 lg:px-32 pt-40">
@@ -36,7 +38,9 @@ export default function Info({ animeData }: Props) {
             <div className="text-gray-400">22m</div>
           </div>
           <div className="flex space-x-4 my-4">
-            <Button variant="default">Watch now</Button>
+            <Link href={`/watch/${animeData.anime.info.id}`}>
+              <Button variant="default">Watch now</Button>
+            </Link>
             <Button variant="secondary">Add to List</Button>
           </div>
           <p className="text-gray-400 leading-loose">
