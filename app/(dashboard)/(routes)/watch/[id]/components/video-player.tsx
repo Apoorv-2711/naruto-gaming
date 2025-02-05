@@ -3,7 +3,6 @@
 import { getEpisodeServers } from "@/actions/get-server";
 import { getAnimeEpisodeSources } from "@/server/narutogaming/scrappers/animeEpisodeSrcs";
 import { AnimeServers } from "@/types/anime";
-import { ScrapedAnimeEpisodesSources } from "@/types/scrapper/animeEpisodeSrcs";
 import { ScrapedEpisodeServers } from "@/types/scrapper/episodeServers";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
@@ -11,7 +10,12 @@ import Player from "./Player";
 
 type Props = {
   episodeServer: ScrapedEpisodeServers;
-  videoSrc: ScrapedAnimeEpisodesSources;
+  videoSrc: {
+    sources: { url: string; type: string }[];
+    tracks: { file: string; label: string; kind: string; default?: boolean }[];
+    intro: { start: number; end: number };
+    outro: { start: number; end: number };
+  };
 };
 
 export default function VideoPlayer({ episodeServer, videoSrc }: Props) {

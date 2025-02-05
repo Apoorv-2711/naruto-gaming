@@ -32,7 +32,7 @@ export default async function page({ params, searchParams }: Props) {
     staleTime: 0,
   });
 
-  const videoSrc = await queryClient.fetchQuery({
+  const videoSrc = (await queryClient.fetchQuery({
     queryKey: [
       "video-src",
       searchParams.ep,
@@ -46,7 +46,12 @@ export default async function page({ params, searchParams }: Props) {
         "sub"
       ),
     staleTime: 0,
-  });
+  })) as {
+    sources: { url: string; type: string }[];
+    tracks: { file: string; label: string; kind: string; default?: boolean }[];
+    intro: { start: number; end: number };
+    outro: { start: number; end: number };
+  };
 
   //   console.log(episodeServer);
   console.log(videoSrc);
