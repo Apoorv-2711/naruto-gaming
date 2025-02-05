@@ -79,8 +79,8 @@ const EstimateSchedule: FC<EstimateScheduleProps> = ({
           className="flex flex-auto"
           opts={{
             startIndex: new Date().getDate() - 1,
-            Animation: "scroll",
-            scroll: 1,
+            // Animation: "scroll",
+            // scroll: 1,
             dragFree: true,
           }}
         >

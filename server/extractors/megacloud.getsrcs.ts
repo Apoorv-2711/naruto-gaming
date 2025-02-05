@@ -18,7 +18,7 @@ let arr = new Array(128).fill(void 0);
 let dateNow = Date.now();
 let content: string = "";
 
-function isDetached(buffer: ArrayBuffer): boolean {
+function isDetached(buffer: ArrayBufferLike): boolean {
   if (buffer.byteLength === 0) {
     const formatted = util.format(buffer);
     return formatted.includes("detached");
