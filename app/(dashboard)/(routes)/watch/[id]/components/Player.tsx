@@ -44,9 +44,9 @@ const Player: React.FC<VideoPlayerProps> = ({ sources, tracks, intro, outro }) =
     playerRef.current?.seekTo(newValue[0])
   }
 
-  const handleProgress = (state: { played: number; buffered: number }) => {
+  const handleProgress = (state: { played: number; loaded: number }) => {
     setPlayed(state.played)
-    setBuffering(state.buffered < state.played + 0.05) // Consider buffering if less than 5% ahead
+    setBuffering(state.loaded < state.played + 0.05) // Consider buffering if less than 5% ahead
   }
 
   const handleDuration = (duration: number) => {
@@ -169,7 +169,11 @@ const Player: React.FC<VideoPlayerProps> = ({ sources, tracks, intro, outro }) =
         height="100%"
         config={{
           file: {
-            tracks: tracks,
+            tracks: tracks.map(track => ({
+              ...track,
+              src: track.file,
+              srcLang: track.label
+            })),
             attributes: {
               crossOrigin: "anonymous",
             },
