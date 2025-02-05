@@ -1,13 +1,12 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { animeInfo } from "@/types/types";
+import { ScrapedAnimeAboutInfo } from "@/types/scrapper/animeAboutInfo";
 
 type Props = {
-  animeData: animeInfo;
+  animeData: ScrapedAnimeAboutInfo;
 };
 
 export default function Info({ animeData }: Props) {
-  
   return (
     <div className=" text-white">
       <div className="flex mx-auto px-4 sm:px-6 lg:px-32 pt-40">
@@ -16,7 +15,7 @@ export default function Info({ animeData }: Props) {
             alt="Rurouni Kenshin: Meiji Kenkaku Romantan (2023)"
             className="w-[200px] h-[300px] rounded-lg shadow-lg"
             height="300"
-            src={animeData.anime.info.poster}
+            src={animeData.anime.info.poster ? animeData.anime.info.poster : ""}
             style={{
               aspectRatio: "200/300",
               objectFit: "cover",

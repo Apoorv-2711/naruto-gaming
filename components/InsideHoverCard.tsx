@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import Balancer from "react-wrap-balancer";
 
 type InsideHoverCardProps = {
-  id: string;
+  id: string | null;
 };
 
 const InsideHoverCard: FC<InsideHoverCardProps> = ({ id }) => {

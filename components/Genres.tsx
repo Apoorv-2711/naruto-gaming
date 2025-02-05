@@ -4,9 +4,10 @@ import React, { useEffect } from "react";
 import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
 import { colors, hoverColors } from "@/lib/constants";
+import { ScrapedGenreAnime } from "@/types/scrapper/animeGenre";
 
 type GenresProps = {
-  genresData: home["genres"];
+  genresData: ScrapedGenreAnime["genres"];
 };
 
 const Genres: React.FC<GenresProps> = ({ genresData }) => {
@@ -36,20 +37,20 @@ const Genres: React.FC<GenresProps> = ({ genresData }) => {
     };
   });
 
-  const [hoverId, setHoverId] = React.useState<number >(0);
+  const [hoverId, setHoverId] = React.useState<number>(0);
 
   useEffect(() => {
     const target = document.getElementById(`${hoverId}`);
     if (target) {
       target.addEventListener("mouseover", (e) => {
         target.style.backgroundColor = `${hoverColors[+`${hoverId - 1}`]}`;
-        console.log('hovered')
+        console.log("hovered");
       });
       target.addEventListener("mouseleave", (e) => {
-        target.style.backgroundColor = 'transparent';
+        target.style.backgroundColor = "transparent";
       });
     }
-  } , [hoverId]) 
+  }, [hoverId]);
 
   return (
     <>
@@ -63,14 +64,10 @@ const Genres: React.FC<GenresProps> = ({ genresData }) => {
               style={{
                 color: `#${genre.color}`,
               }}
-              onMouseEnter={() => setHoverId(genre.id)} 
+              onMouseEnter={() => setHoverId(genre.id)}
               key={genre.id}
             >
-              <span
-                className={`text-sm font-semibold`}
-              >
-                {genre.genre}
-              </span>
+              <span className={`text-sm font-semibold`}>{genre.genre}</span>
             </h2>
           ))}
         </div>

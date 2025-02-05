@@ -4,7 +4,7 @@ import RecentSection from "@/components/RecentSection";
 import ShareSection from "@/components/ShareSection";
 import TopAiringSection from "@/components/TopAiringSection";
 import Trending from "@/components/Trending";
-import scrapeHomePage from "@/parser/homePage";
+import { getHomePage } from "@/server/narutogaming/scrappers/homepage";
 import {
   HydrationBoundary,
   QueryClient,
@@ -29,7 +29,7 @@ const home = async () => {
   const queryClient = new QueryClient();
   const data = await queryClient.fetchQuery({
     queryKey: ["homePage"],
-    queryFn: () => scrapeHomePage(),
+    queryFn: () => getHomePage(),
     staleTime: 0,
   });
   const carouselData = data.spotlightAnimes;

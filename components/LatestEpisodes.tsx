@@ -4,9 +4,10 @@ import { FC } from "react";
 import InsideHoverCard from "./InsideHoverCard";
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
 import { ArrowRight, Dot } from "lucide-react";
+import { ScrapedHomePage } from "@/types/scrapper/homePage";
 
 type LatestEpisodesProps = {
-  latestEpisodeData: home["latestEpisodeAnimes"];
+  latestEpisodeData: ScrapedHomePage["latestEpisodeAnimes"];
 };
 
 const LatestEpisodes: FC<LatestEpisodesProps> = ({ latestEpisodeData }) => {
@@ -28,7 +29,7 @@ const LatestEpisodes: FC<LatestEpisodesProps> = ({ latestEpisodeData }) => {
             <HoverCard openDelay={0} closeDelay={0}>
               <HoverCardTrigger asChild>
                 <Image
-                  alt={data.name}
+                  alt={data.name ? data.name : "__VK__APOORV__NG"}
                   className="transform rounded-lg brightness-90 transition will-change-auto hover:blur-sm group-hover:brightness-100"
                   style={{
                     transform: "translate3d(0, 0, 0)",
@@ -36,7 +37,7 @@ const LatestEpisodes: FC<LatestEpisodesProps> = ({ latestEpisodeData }) => {
                     objectFit: "cover",
                     objectPosition: "center",
                   }}
-                  src={data.poster}
+                  src={data.poster ? data.poster : "/logo.png"}
                   width={720}
                   height={480}
                   sizes="(max-width: 640px) 100vw,

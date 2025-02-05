@@ -4,12 +4,15 @@ import { HoverCard, HoverCardContent, HoverCardTrigger } from "./ui/hover-card";
 import Image from "next/image";
 import InsideHoverCard from "./InsideHoverCard";
 import { ArrowRight, Dot } from "lucide-react";
+import { ScrapedHomePage } from "@/types/scrapper/homePage";
 
 type NewOnNarutoWatchProps = {
-  newOnNarutoWatchData: home["latestEpisodeAnimes"];
+  newOnNarutoWatchData: ScrapedHomePage["latestEpisodeAnimes"];
 };
 
-const NewOnNarutoWatch: FC<NewOnNarutoWatchProps> = ({ newOnNarutoWatchData }) => {
+const NewOnNarutoWatch: FC<NewOnNarutoWatchProps> = ({
+  newOnNarutoWatchData,
+}) => {
   return (
     <>
       <div className="mt-12 mb-4 flex flex-row justify-between items-center">
@@ -30,7 +33,7 @@ const NewOnNarutoWatch: FC<NewOnNarutoWatchProps> = ({ newOnNarutoWatchData }) =
             <HoverCard openDelay={0} closeDelay={0}>
               <HoverCardTrigger asChild>
                 <Image
-                  alt={data.name}
+                  alt={data.name ? data.name : "__VK__APOORV__NG"}
                   className="transform rounded-lg brightness-90 transition will-change-auto hover:blur-sm group-hover:brightness-100"
                   style={{
                     transform: "translate3d(0, 0, 0)",
@@ -38,7 +41,7 @@ const NewOnNarutoWatch: FC<NewOnNarutoWatchProps> = ({ newOnNarutoWatchData }) =
                     objectFit: "cover",
                     objectPosition: "center",
                   }}
-                  src={data.poster}
+                  src={data.poster ? data.poster : "/logo.png"}
                   width={720}
                   height={480}
                   sizes="(max-width: 640px) 100vw,
