@@ -1,4 +1,6 @@
-// import Info from "@/components/Info";
+import Info from "@/components/Info";
+import { getAnimeAboutInfo } from "@/server/narutogaming/scrappers/animeAboutInfo";
+import { QueryClient } from "@tanstack/react-query";
 type Props = {
   params: {
     id: string;
@@ -6,29 +8,20 @@ type Props = {
 };
 
 const anime = async (props: Props) => {
-  // const { id } = props.params;
+  const { id } = props.params;
 
-  // const dataforAnimeInfo = async (id: string) => {
-  //   const res = await fetch(`http://localhost:3000/api/animeInfo`, {
-  //     cache: "no-cache",
-  //     method: "POST",
-  //     body: JSON.stringify({ id }),
-  //   });
-  //   const data = await res.json();
+  const queryClient = new QueryClient();
+  const data = await queryClient.fetchQuery({
+    queryKey: ["animeAboutInfo", id],
+    queryFn: () => getAnimeAboutInfo(id),
+    staleTime: 0,
+  });
 
-  //   if (res.ok) {
-  //     return data;
-  //   } else {
-  //     throw new Error("Error while Fetching Data...");
-  //   }
-  // };
-
-  // const data = await dataforAnimeInfo(id);
+  console.log(data, "data");
 
   return (
     <div>
-      {/* <Info animeData={data} /> */}
-      Hello
+      <Info animeData={data} />
     </div>
   );
 };
